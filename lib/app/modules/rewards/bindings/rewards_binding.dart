@@ -4,6 +4,6 @@ import 'package:get/get.dart';
 class RewardsBinding extends Binding {
   @override
   List<Bind> dependencies() {
-    return [Bind.put(RewardsController())];
+    return [Bind.put(RewardsController(), permanent: true)];
   }
 }

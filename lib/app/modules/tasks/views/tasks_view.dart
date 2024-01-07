@@ -1,5 +1,6 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_template/app/globals.dart';
 import 'package:get/get.dart';
 
 import '../controller/tasks_controller.dart';
@@ -9,16 +10,20 @@ class TasksView extends GetWidget<TasksController> {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    return Scaffold(
       body: Center(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
             AutoSizeText(
               'TasksView is working',
-              style: TextStyle(fontSize: 20),
+              maxLines: 1,
+              style: Theme.of(context).textTheme.displaySmall,
             ),
-            AutoSizeText('ProductId: ')
+            AutoSizeText(
+              '${controller.tasksText}',
+              style: Theme.of(context).textTheme.titleLarge?.copyWith(color: colorPrimary),
+            )
           ],
         ),
       ),

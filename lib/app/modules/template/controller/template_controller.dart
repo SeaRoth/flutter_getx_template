@@ -1,17 +1,21 @@
-
 import 'package:flutter_getx_template/app/our_controller.dart';
+import 'package:get/get.dart';
 
-class TasksController extends OurController {
+class TemplateController extends OurController {
+  var templateText = "".obs;
 
   @override
   void onInit() {
-    // TODO: implement onInit
     super.onInit();
   }
 
   @override
+  void onReady() {
+    super.onReady();
+  }
+
+  @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
   }
 }
