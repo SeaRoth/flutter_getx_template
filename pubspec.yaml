@@ -1,0 +1,30 @@
+name: flutter_getx_template
+description: "A template project that uses GetX"
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: '>=3.2.3 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  auto_size_text: ^3.0.0
+  cached_network_image: ^3.3.1
+  cupertino_icons: ^1.0.6
+  get: ^5.0.0-release-candidate-5
+  get_storage:
+  get_it: ^7.6.6
+  palette_generator: ^0.3.3+3
+  shared_preferences: ^2.2.2
+  timeago: ^3.6.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+
+flutter:
+  uses-material-design: true
+  assets:
+    - assets/error.png
