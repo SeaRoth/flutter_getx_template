@@ -4,6 +4,7 @@ import 'package:flutter_getx_template/app/models/screen_constants.dart';
 import 'package:flutter_getx_template/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
+
 import '../controllers/root_controller.dart';
 
 class RootView extends GetView<RootController> {
@@ -38,7 +39,7 @@ class RootView extends GetView<RootController> {
       setScreenStuff(context);
     }
 
-    // return AutoSizeText("DATA");
+    // return AutoSizeAutoSizeText("DATA");
 
     return Scaffold(
         body: GetRouterOutlet(

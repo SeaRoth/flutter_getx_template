@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
@@ -13,11 +14,11 @@ class RewardsView extends GetWidget<RewardsController> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Text(
+            AutoSizeText(
               'RewardsView is working',
               style: TextStyle(fontSize: 20),
             ),
-            Text('ProductId: ')
+            AutoSizeText('ProductId: ')
           ],
         ),
       ),
