@@ -1,4 +1,4 @@
-import 'package:flutter_getx_template/app/our_controller.dart';
+import 'package:flutter_getx_template/app/modules/our_controller.dart';
 import 'package:get/get.dart';
 
 class ProfileController extends OurController {

@@ -51,7 +51,7 @@ void main() async {
               onSurface: Colors.black54));
     }
     runApp(GetMaterialApp(
-      title: "Heimer.gg",
+      title: "Flutter GetX Template",
       theme: selectedThemeData,
       debugShowCheckedModeBanner: false,
       getPages: AppPages.routes,

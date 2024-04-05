@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_template/app/globals.dart';
+import 'package:flutter_getx_template/app/helpers/dialog_helper.dart';
 import 'package:get/get.dart';
 
 import '../controller/rewards_controller.dart';
@@ -21,7 +22,7 @@ class RewardsView extends GetWidget<RewardsController> {
               style: Theme.of(context).textTheme.displaySmall,
             ),
             Obx(() => AutoSizeText(
-                  '${controller.rewardsText.value}',
+                  controller.rewardsText.value,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(color: colorPrimary),
                 )),
             Obx(() => Visibility(
@@ -33,14 +34,15 @@ class RewardsView extends GetWidget<RewardsController> {
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       var day = controller.daysOfWeek[index];
-
                       return GestureDetector(
                         onTap: () {
-                          Get.defaultDialog(title: "Clicked $day");
+                          createBottomSheetDialog(context, headerWidget: AutoSizeText("day"), AutoSizeText("$day"));
                         },
                         child: Container(
+                          width: double.infinity,
                           padding: const EdgeInsets.all(10),
                           child: Row(
+                            mainAxisSize: MainAxisSize.max,
                             children: [
                               Padding(
                                 padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
