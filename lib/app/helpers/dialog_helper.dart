@@ -9,7 +9,7 @@ createBottomSheetDialog(BuildContext context, Widget contentsWidget,
     {Widget? headerWidget, double? sheetHeightPercentage}) {
   final sc = GetIt.instance<ScreenConstants>();
   final deviceHeight = sc.height;
-  double? sheetHeight = null;
+  double? sheetHeight;
   if (sheetHeightPercentage != null) {
     sheetHeight = deviceHeight * sheetHeightPercentage;
   }
