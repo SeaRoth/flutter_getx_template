@@ -14,12 +14,11 @@ void main() async {
 
   try {
     var brightness = SchedulerBinding.instance.platformDispatcher.platformBrightness;
-    bool darkModePhoneSetting = brightness == Brightness.dark;
     final prefs = await SharedPreferences.getInstance();
     final darkModeUserPreference = prefs.getBool(darkModePref) ?? false;
     late ThemeData selectedThemeData;
 
-    if (true) {
+    if (darkModeUserPreference) {
       selectedThemeData = ThemeData.dark().copyWith(
         colorScheme: ThemeData().colorScheme.copyWith(
           brightness: Brightness.dark,
@@ -27,8 +26,6 @@ void main() async {
           onSurface: colorOnPress,
           primary: colorPrimary,
           onPrimary: colorOnPress,
-          background: colorBackground,
-          onBackground: colorOnPress,
           secondary: colorSecondary,
           onSecondary: colorOnPress,
           error: colorError,
@@ -45,8 +42,6 @@ void main() async {
               onSecondary: Colors.purpleAccent,
               error: Colors.red,
               onError: Colors.red,
-              background: Colors.white70,
-              onBackground: Colors.blueGrey,
               surface: Colors.amber,
               onSurface: Colors.black54));
     }
