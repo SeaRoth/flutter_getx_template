@@ -22,6 +22,15 @@ createBottomSheetDialog({required BuildContext context, required Widget contents
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Container(
+              width: 30,
+              height: 5,
+              margin: const EdgeInsets.only(top: 8.0), // Adjust margin as needed
+              decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(5 / 2), // Capsule shape
+                color: Colors.grey,
+              ),
+            ),
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -33,7 +42,7 @@ createBottomSheetDialog({required BuildContext context, required Widget contents
                       fit: FlexFit.loose,
                       child: GestureDetector(
                         onTap: () async {
-                          Get.back();
+                          Get.close(closeAll: false);
                         },
                         child: const Icon(
                           Icons.close,
@@ -60,11 +69,10 @@ createBottomSheetDialog({required BuildContext context, required Widget contents
         ),
       ),
     ),
-    barrierColor: Colors.black45,
-    backgroundColor: Colors.white60,
     isScrollControlled: true,
     isDismissible: true,
     useRootNavigator: true,
+    backgroundColor: Theme.of(context).colorScheme.surface,
     elevation: 2,
     enterBottomSheetDuration: Duration(milliseconds: 400),
     enableDrag: true,
