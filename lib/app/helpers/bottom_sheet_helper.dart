@@ -1,14 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_template/app/constants.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 import '../models/screen_constants.dart';
 
-createBottomSheetDialog({required BuildContext context, required Widget contentsWidget, required Widget headerWidget, required double sheetHeightPercentage}) {
+createBottomSheetDialog({required BuildContext context, required Widget contentsWidget, required Widget headerWidget}) async {
+  final prefs = await SharedPreferences.getInstance();
   final sc = GetIt.instance<ScreenConstants>();
   final deviceHeight = sc.height;
   double? sheetHeight;
-  sheetHeight = deviceHeight * sheetHeightPercentage;
+  final preferenceHeight = prefs.getDouble(MyConstants.sharedPrefBottomSheetHeight) ?? 55;
+  sheetHeight = deviceHeight * (preferenceHeight/100);
 
   Get.bottomSheet(
     Container(

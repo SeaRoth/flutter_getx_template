@@ -36,14 +36,24 @@ class AppPages {
           ],
           title: null,
           children: [
-            GetPage(name: _Paths.pathMain, page: () => const MainView(), preventDuplicates: true, title: 'Ranked View', binding: MainBinding()),
-            GetPage(middlewares: [
-              //only enter this route when authed
-              //EnsureAuthMiddleware(),
-            ], name: _Paths.pathDetails, page: () => const DetailsView(), title: 'Summoner List View', transition: Transition.size, binding: DetailsBinding()),
+            GetPage(
+                name: _Paths.pathMain,
+                page: () => const MainView(),
+                title: 'Ranked View',
+                preventDuplicates: true,
+                binding: MainBinding()),
+            GetPage(
+                middlewares: [],
+                name: _Paths.pathDetails,
+                page: () => const DetailsView(),
+                title: 'Summoner List View',
+                preventDuplicates: true,
+                transition: Transition.size,
+                binding: DetailsBinding()),
             GetPage(
               name: _Paths.pathSettings,
               title: "Settings",
+              preventDuplicates: true,
               transition: Transition.size,
               page: () => const SettingsView(),
               binding: SettingsBinding(),

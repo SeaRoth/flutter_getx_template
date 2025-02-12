@@ -7,7 +7,7 @@ class HomeBinding extends Binding {
   List<Bind> dependencies() {
     return [
       Bind.lazyPut<HomeController>(
-            () => HomeController(),
+        () => HomeController(),
       )
     ];
   }

@@ -40,7 +40,7 @@ class MainView extends GetWidget<MainController> {
                             child: GestureDetector(
                               onTap: () {
                                 createBottomSheetDialog(
-                                    context: context, headerWidget: AutoSizeText("day"), contentsWidget: AutoSizeText(day), sheetHeightPercentage: 0.5);
+                                    context: context, headerWidget: AutoSizeText("day"), contentsWidget: AutoSizeText(day));
                               },
                               child: Padding(
                                 // Add padding for better touch area
