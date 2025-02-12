@@ -30,7 +30,7 @@ class SettingsView extends GetWidget<SettingsController> {
               label: 'Dark Mode',
               callback: (bool onOrOff) {
                 print("This was changed to $onOrOff");
-                controller.themeController.changeThemeWithString('light');
+                controller.themeController.toggleTheme();
               },
             ),
           ],
