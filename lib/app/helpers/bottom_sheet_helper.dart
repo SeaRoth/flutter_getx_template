@@ -5,14 +5,11 @@ import 'package:get_it/get_it.dart';
 
 import '../models/screen_constants.dart';
 
-createBottomSheetDialog(BuildContext context, Widget contentsWidget,
-    {Widget? headerWidget, double? sheetHeightPercentage}) {
+createBottomSheetDialog({required BuildContext context, required Widget contentsWidget, required Widget headerWidget, required double sheetHeightPercentage}) {
   final sc = GetIt.instance<ScreenConstants>();
   final deviceHeight = sc.height;
   double? sheetHeight;
-  if (sheetHeightPercentage != null) {
-    sheetHeight = deviceHeight * sheetHeightPercentage;
-  }
+  sheetHeight = deviceHeight * sheetHeightPercentage;
 
   Get.bottomSheet(
     Container(
@@ -47,7 +44,6 @@ createBottomSheetDialog(BuildContext context, Widget contentsWidget,
                     ),
                   ],
                 ),
-
               ],
             ),
             Flexible(
@@ -66,7 +62,7 @@ createBottomSheetDialog(BuildContext context, Widget contentsWidget,
       ),
     ),
     barrierColor: Colors.black45,
-    backgroundColor: colorBottomSheetBackground,
+    backgroundColor: Colors.white60,
     isScrollControlled: true,
     isDismissible: true,
     useRootNavigator: true,

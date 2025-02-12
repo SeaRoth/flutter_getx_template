@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_getx_template/app/globals.dart';
 import 'package:get/get.dart';
 
-import '../controller/tasks_controller.dart';
+import '../controller/details_controller.dart';
 
-class TasksView extends GetWidget<TasksController> {
-  const TasksView({super.key});
+class DetailsView extends GetWidget<DetailsController> {
+  const DetailsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,14 +16,14 @@ class TasksView extends GetWidget<TasksController> {
           mainAxisSize: MainAxisSize.min,
           children: [
             AutoSizeText(
-              'TasksView is working',
+              'Details view',
               maxLines: 1,
               style: Theme.of(context).textTheme.displaySmall,
             ),
-            AutoSizeText(
+            Obx(() =>AutoSizeText(
               '${controller.tasksText}',
               style: Theme.of(context).textTheme.titleLarge?.copyWith(color: colorPrimary),
-            )
+            )),
           ],
         ),
       ),

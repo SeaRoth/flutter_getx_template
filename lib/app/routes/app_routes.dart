@@ -11,7 +11,7 @@ abstract class Routes {
 
 abstract class _Paths {
   static const pathHome = '/home';
-  static const pathRewards = '/rewards';
+  static const pathRewards = '/main';
   static const pathTasks = '/tasks';
   static const pathProfile = '/profile';
 }

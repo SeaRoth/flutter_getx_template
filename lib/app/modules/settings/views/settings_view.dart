@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_getx_template/app/globals.dart';
 import 'package:get/get.dart';
 
-import '../controller/profile_controller.dart';
+import '../controller/settings_controller.dart';
 
-class ProfileView extends GetWidget<ProfileController> {
-  const ProfileView({super.key});
+class SettingsView extends GetWidget<SettingsController> {
+  const SettingsView({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +16,7 @@ class ProfileView extends GetWidget<ProfileController> {
           mainAxisSize: MainAxisSize.min,
           children: [
             AutoSizeText(
-              'ProfileView is working',
+              'Settings view',
               maxLines: 1,
               style: Theme.of(context).textTheme.displaySmall,
             ),

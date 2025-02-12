@@ -34,17 +34,17 @@ class HomeView extends GetView<HomeController> {
                           // _Paths.HOME + [Empty]
                           BottomNavigationBarItem(
                             icon: Icon(Icons.stars_rounded),
-                            label: 'Rewards',
+                            label: 'Main',
                           ),
                           // _Paths.HOME + Routes.PROFILE
                           BottomNavigationBarItem(
                             icon: Icon(Icons.account_box_rounded),
-                            label: 'Tasks',
+                            label: 'Details',
                           ),
                           // _Paths.HOME + _Paths.PRODUCTS
                           BottomNavigationBarItem(
                             icon: Icon(Icons.account_box_rounded),
-                            label: 'Profile',
+                            label: 'Settings',
                           ),
                         ],
                       );

@@ -21,16 +21,16 @@ void main() async {
     if (darkModeUserPreference) {
       selectedThemeData = ThemeData.dark().copyWith(
         colorScheme: ThemeData().colorScheme.copyWith(
-          brightness: Brightness.dark,
-          surface: colorSurface,
-          onSurface: colorOnPress,
-          primary: colorPrimary,
-          onPrimary: colorOnPress,
-          secondary: colorSecondary,
-          onSecondary: colorOnPress,
-          error: colorError,
-          onError: colorOnPress,
-        ),
+              brightness: Brightness.dark,
+              surface: colorSurface,
+              onSurface: colorOnPress,
+              primary: colorPrimary,
+              onPrimary: colorOnPress,
+              secondary: colorSecondary,
+              onSecondary: colorOnPress,
+              error: colorError,
+              onError: colorOnPress,
+            ),
       );
     } else {
       selectedThemeData = ThemeData.light().copyWith(

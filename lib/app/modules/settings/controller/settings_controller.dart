@@ -1,8 +1,8 @@
 import 'package:flutter_getx_template/app/modules/our_controller.dart';
 import 'package:get/get.dart';
 
-class RewardsController extends OurController {
-  final rewardsText = "RewardsController".obs;
+class SettingsController extends OurController {
+  var profileText = "settings text".obs;
 
   @override
   void onInit() {
