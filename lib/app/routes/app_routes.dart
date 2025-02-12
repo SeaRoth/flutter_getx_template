@@ -4,14 +4,14 @@ part of 'app_pages.dart';
 abstract class Routes {
   static const routeHome = _Paths.pathHome;
 
-  static const routeRewards = _Paths.pathHome + _Paths.pathRewards;
-  static const routeTasks = _Paths.pathHome + _Paths.pathTasks;
-  static const routeProfile = _Paths.pathHome + _Paths.pathProfile;
+  static const routeMain = _Paths.pathHome + _Paths.pathMain;
+  static const routeDetails = _Paths.pathHome + _Paths.pathDetails;
+  static const routeSettings = _Paths.pathHome + _Paths.pathSettings;
 }
 
 abstract class _Paths {
   static const pathHome = '/home';
-  static const pathRewards = '/main';
-  static const pathTasks = '/tasks';
-  static const pathProfile = '/profile';
+  static const pathMain = '/main';
+  static const pathDetails = '/details';
+  static const pathSettings = '/settings';
 }

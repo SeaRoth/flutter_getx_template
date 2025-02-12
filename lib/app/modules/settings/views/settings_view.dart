@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_template/app/globals.dart';
+import 'package:flutter_getx_template/app/helpers/switch/adaptive_switch_view.dart';
 import 'package:get/get.dart';
 
 import '../controller/settings_controller.dart';
@@ -24,6 +25,14 @@ class SettingsView extends GetWidget<SettingsController> {
                   controller.profileText.value,
                   style: Theme.of(context).textTheme.titleLarge?.copyWith(color: colorPrimary),
                 )),
+            AdaptiveSwitchView(
+              preferenceKey: 'settings_dark_mode',
+              label: 'Dark Mode',
+              callback: (bool onOrOff) {
+                print("This was changed to $onOrOff");
+                controller.themeController.changeThemeWithString('light');
+              },
+            ),
           ],
         ),
       ),

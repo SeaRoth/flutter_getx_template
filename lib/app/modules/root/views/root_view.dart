@@ -39,8 +39,6 @@ class RootView extends GetView<RootController> {
       setScreenStuff(context);
     }
 
-    // return AutoSizeAutoSizeText("DATA");
-
     return Scaffold(
         body: GetRouterOutlet(
       initialRoute: Routes.routeHome,

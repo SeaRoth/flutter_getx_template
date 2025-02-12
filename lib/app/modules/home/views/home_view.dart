@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_getx_template/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
+
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});
 
@@ -15,16 +16,13 @@ class HomeView extends GetView<HomeController> {
             builder: (context) {
               return Scaffold(
                 body: Stack(children: [
-                  Obx(() => Visibility(
-                        visible: controller.finishedLeagueInit.isTrue,
-                        child: GetRouterOutlet(
-                          initialRoute: Routes.routeRewards,
-                          anchorRoute: Routes.routeHome,
-                        ),
-                      )),
+                  GetRouterOutlet(
+                    initialRoute: Routes.routeMain,
+                    anchorRoute: Routes.routeHome,
+                  ),
                 ]),
                 bottomNavigationBar: IndexedRouteBuilder(
-                    routes: const [Routes.routeRewards, Routes.routeTasks, Routes.routeProfile],
+                    routes: const [Routes.routeMain, Routes.routeDetails, Routes.routeSettings],
                     builder: (context, routes, index) {
                       final delegate = context.delegate;
                       return BottomNavigationBar(

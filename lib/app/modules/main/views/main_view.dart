@@ -34,33 +34,23 @@ class MainView extends GetWidget<MainController> {
                     shrinkWrap: true,
                     itemBuilder: (context, index) {
                       var day = controller.daysOfWeek[index];
-                      return Container(
-                        width: double.infinity,
-                        child: GestureDetector(
-                          onTap: () {
-                            createBottomSheetDialog(
-                                context: context, headerWidget: AutoSizeText("day"), contentsWidget: AutoSizeText("$day"), sheetHeightPercentage: 0.5);
-                          },
-                          child: Container(
-                            width: double.infinity,
-                            padding: const EdgeInsets.all(10),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.fromLTRB(8, 0, 0, 0),
-                                  child: Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
-                                    children: [
-                                      AutoSizeText(day),
-                                    ],
-                                  ),
-                                ),
-                              ],
+                      return Row(
+                        children: [
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                createBottomSheetDialog(
+                                    context: context, headerWidget: AutoSizeText("day"), contentsWidget: AutoSizeText(day), sheetHeightPercentage: 0.5);
+                              },
+                              child: Padding(
+                                // Add padding for better touch area
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(day),
+                              ),
                             ),
                           ),
-                        ),
+                          // Other widgets in the row
+                        ],
                       );
                     },
                   ),

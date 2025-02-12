@@ -36,13 +36,13 @@ class AppPages {
           ],
           title: null,
           children: [
-            GetPage(name: _Paths.pathRewards, page: () => const MainView(), preventDuplicates: true, title: 'Ranked View', binding: MainBinding()),
+            GetPage(name: _Paths.pathMain, page: () => const MainView(), preventDuplicates: true, title: 'Ranked View', binding: MainBinding()),
             GetPage(middlewares: [
               //only enter this route when authed
               //EnsureAuthMiddleware(),
-            ], name: _Paths.pathTasks, page: () => const DetailsView(), title: 'Summoner List View', transition: Transition.size, binding: DetailsBinding()),
+            ], name: _Paths.pathDetails, page: () => const DetailsView(), title: 'Summoner List View', transition: Transition.size, binding: DetailsBinding()),
             GetPage(
-              name: _Paths.pathProfile,
+              name: _Paths.pathSettings,
               title: "Settings",
               transition: Transition.size,
               page: () => const SettingsView(),

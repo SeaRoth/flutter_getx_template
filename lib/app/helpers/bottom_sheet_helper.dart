@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_template/app/globals.dart';
 import 'package:get/get.dart';
 import 'package:get_it/get_it.dart';
 
@@ -29,7 +28,7 @@ createBottomSheetDialog({required BuildContext context, required Widget contents
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    headerWidget ?? Text(""),
+                    headerWidget,
                     Flexible(
                       fit: FlexFit.loose,
                       child: GestureDetector(

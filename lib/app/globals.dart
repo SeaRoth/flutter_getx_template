@@ -1,11 +1,10 @@
-library my_prj.globals;
+library;
 
 import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 
 const String darkModePref = 'darkMode';
 
-// This is our global ServiceLocator
 GetIt getIt = GetIt.instance;
 
 Color colorPrimary = const Color(0xFF076290);
