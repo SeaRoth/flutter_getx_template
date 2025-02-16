@@ -4,10 +4,9 @@ import 'package:get/get.dart';
 
 class MySliderView extends GetView<MySliderController> {
   final String preferenceKey;
-  final String label;
   final Function callback;
 
-  const MySliderView({super.key, required this.preferenceKey, required this.label, required this.callback});
+  const MySliderView({super.key, required this.preferenceKey, required this.callback});
 
   @override
   MySliderController get controller => Get.put(
@@ -17,10 +16,8 @@ class MySliderView extends GetView<MySliderController> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
+    return Column(
       children: [
-        Text(label),
-        const SizedBox(width: 8),
         SliderTheme(
           data: SliderTheme.of(context).copyWith(
             thumbColor: Theme.of(context).platform == TargetPlatform.iOS ? Colors.blue : Colors.green,
@@ -40,7 +37,7 @@ class MySliderView extends GetView<MySliderController> {
                 },
               )),
         ),
-        Obx(() =>Text(controller.sliderValue.value.toStringAsFixed(0)))
+        Obx(() =>Text(controller.sliderValue.value.toStringAsFixed(0), style: Theme.of(context).textTheme.displaySmall,))
       ],
     );
   }
