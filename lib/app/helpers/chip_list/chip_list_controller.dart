@@ -3,20 +3,19 @@ import 'package:get/get.dart';
 
 class ChipListController extends GetxController {
   final String preferenceKey;
-  final RxList<int> selectedMatchQueueIds = <int>[].obs;
+  final RxList<int> selectedMatchQueueIds = <int>[0].obs;
 
   ChipListController({required this.preferenceKey});
-
-  @override
-  void onReady() {
-
-    super.onReady();
-  }
 
   @override
   void onInit() {
     loadMultiSelectState();
     super.onInit();
+  }
+  
+  @override
+  void onReady() {
+    super.onReady();
   }
 
   Future<void> loadMultiSelectState() async {
