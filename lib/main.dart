@@ -8,10 +8,10 @@ import 'app/modules/theme_controller.dart';
 import 'my_app.dart';
 
 void main() async {
-  Get.put(ThemeController());
   getIt.registerSingleton<MyNumberFormatter>(MyNumberFormatter());
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init("flutter_template_db");
+  Get.put(ThemeController());
 
   try {
     runApp(

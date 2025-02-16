@@ -1,8 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_template/app/constants.dart';
 import 'package:get/get.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeController extends GetxController {
   final Rx<ThemeData> currentTheme = ThemeData.dark().obs;
+
+  @override
+  Future<void> onReady() async {
+    final prefs = await SharedPreferences.getInstance();
+    final useDarkMode = prefs.getBool(MyConstants.sharedPrefUseDarkMode) ?? false;
+    if (useDarkMode) {
+      changeThemeWithString("dark");
+    }else {
+      changeThemeWithString("light");
+    }
+    super.onReady();
+  }
 
   void changeTheme(ThemeData newTheme) {
     currentTheme.value = newTheme;
@@ -20,7 +34,7 @@ class ThemeController extends GetxController {
   }
 
   void changeThemeWithString(String themeName) {
-    switch(themeName){
+    switch (themeName) {
       case 'light':
         currentTheme.value = ThemeData.light();
         Get.changeTheme(ThemeData.light());
