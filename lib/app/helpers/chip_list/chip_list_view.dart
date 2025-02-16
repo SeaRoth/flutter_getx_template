@@ -8,13 +8,14 @@ class ChipListView extends GetView<ChipListController> {
   final List<String> chipNames;
   final Function callback;
   final bool multiSelect;
+
   //final RxList<int> controller.selectedMatchQueueIds = <int>[0].obs;
 
   const ChipListView({super.key, required this.multiSelect, required this.preferenceKey, required this.chipNames, required this.callback});
 
   @override
   ChipListController get controller => Get.put(
-        ChipListController(preferenceKey: preferenceKey),
+        ChipListController(preferenceKey: preferenceKey, multiSelect: multiSelect),
         tag: preferenceKey,
       );
 

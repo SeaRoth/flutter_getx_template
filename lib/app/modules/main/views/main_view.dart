@@ -16,6 +16,14 @@ class MainView extends GetWidget<MainController> {
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            Center(
+              child: Image(
+                image: AssetImage("assets/icon_small.png"),
+                color: null,
+                fit: BoxFit.scaleDown,
+                alignment: Alignment.center,
+              )
+            ),
             AutoSizeText(
               'Main View',
               maxLines: 1,

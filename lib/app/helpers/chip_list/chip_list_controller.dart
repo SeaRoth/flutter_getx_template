@@ -4,8 +4,9 @@ import 'package:get/get.dart';
 class ChipListController extends GetxController {
   final String preferenceKey;
   final RxList<int> selectedMatchQueueIds = <int>[0].obs;
+  final bool multiSelect;
 
-  ChipListController({required this.preferenceKey});
+  ChipListController({required this.preferenceKey, required this.multiSelect});
 
   @override
   void onInit() {
@@ -20,7 +21,11 @@ class ChipListController extends GetxController {
 
   Future<void> loadMultiSelectState() async {
     final sharedPrefsManager = SharedPrefsManager();
-    selectedMatchQueueIds.value = await sharedPrefsManager.getIntList(preferenceKey);
+    final tempList = await sharedPrefsManager.getIntList(preferenceKey);
+    if(multiSelect == false && tempList.isEmpty) {
+      tempList.add(0);
+    }
+    selectedMatchQueueIds.value = tempList;
   }
 
   Future<void> saveMultiSelectState() async {

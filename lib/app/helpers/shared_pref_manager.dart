@@ -15,10 +15,3 @@ class SharedPrefsManager {
     return stringList.map((s) => int.parse(s)).toList();
   }
 }
-
-// Example Usage (in a Widget or other Dart code):
-// final sharedPrefsManager = SharedPrefsManager();
-// final myList = [1, 2, 3, 4, 5];
-// await sharedPrefsManager.saveIntList("myIntList", myList);
-// final retrievedList = await sharedPrefsManager.getIntList("myIntList");
-// print(retrievedList); // Output: [1, 2, 3, 4, 5]
