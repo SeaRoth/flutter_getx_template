@@ -12,7 +12,7 @@ class ChipListController extends GetxController {
     loadMultiSelectState();
     super.onInit();
   }
-  
+
   @override
   void onReady() {
     super.onReady();
