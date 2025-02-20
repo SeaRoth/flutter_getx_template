@@ -24,6 +24,8 @@ class HomeView extends GetView<HomeController> {
       const BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
     ];
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Expanded(
           child: GetRouterOutlet.builder(

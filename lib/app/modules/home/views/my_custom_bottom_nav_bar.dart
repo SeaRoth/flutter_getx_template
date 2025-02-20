@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_getx_template/app/modules/theme_controller.dart';
+import 'package:get/get.dart';
+import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class CustomBottomNavigationBar extends StatefulWidget {
   final int currentIndex;
@@ -24,9 +27,17 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
       child: Stack(
         alignment: Alignment.bottomCenter,
         children: [
-          CustomPaint(
-            size: Size(MediaQuery.of(context).size.width, 60),
-            painter: BottomNavBarPainter(),
+          GetBuilder<ThemeController>(
+            builder: (controller) {
+              return CustomPaint(
+                size: Size(MediaQuery.of(context).size.width, 80),
+                painter: BottomNavBarPainter(
+                  backgroundColor: controller.currentTheme.value == ThemeData.light()
+                      ? Get.theme.colorScheme.surface
+                      : Get.theme.colorScheme.surface,
+                ),
+              );
+            },
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -56,7 +67,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   ? widget.items[widget.items.length ~/ 2].icon
                   : ImageIcon(
                 (widget.items[widget.items.length ~/ 2].icon as ImageIcon).image,
-                color: Colors.greenAccent,
+                color: Colors.white,
               ),
             ),
           ),
@@ -67,10 +78,14 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
 }
 
 class BottomNavBarPainter extends CustomPainter {
+  final Color backgroundColor;
+
+  BottomNavBarPainter({required this.backgroundColor});
+
   @override
   void paint(Canvas canvas, Size size) {
     Paint paint = Paint()
-      ..color = Colors.white
+      ..color = backgroundColor
       ..style = PaintingStyle.fill;
 
     Path path = Path();
@@ -87,6 +102,6 @@ class BottomNavBarPainter extends CustomPainter {
 
   @override
   bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return false;
+    return true;
   }
 }
