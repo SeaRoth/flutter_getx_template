@@ -1,6 +1,7 @@
 import 'package:chip_list/chip_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_template/app/helpers/chip_list/chip_list_controller.dart';
+import 'package:flutter_getx_template/app/helpers/print_debug/build_print.dart';
 import 'package:get/get.dart';
 
 class ChipListView extends GetView<ChipListController> {
@@ -45,7 +46,7 @@ class ChipListView extends GetView<ChipListController> {
               controller.selectedMatchQueueIds.add(val);
             }
             controller.saveMultiSelectState();
-            print("clicked $val and ${controller.selectedMatchQueueIds.toString()}");
+            myPrint("clicked $val and ${controller.selectedMatchQueueIds.toString()}");
             callback(controller.selectedMatchQueueIds.toList());
           }, listOfChipIndicesCurrentlySelected: controller.selectedMatchQueueIds.toList(),
         ));

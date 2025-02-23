@@ -10,6 +10,7 @@ import 'package:flutter_getx_template/app/helpers/slider/my_slider_view.dart';
 import 'package:flutter_getx_template/app/helpers/switch/adaptive_switch_view.dart';
 import 'package:get/get.dart';
 
+import '../../../helpers/print_debug/build_print.dart';
 import '../controller/settings_controller.dart';
 
 class SettingsView extends GetWidget<SettingsController> {
@@ -77,7 +78,7 @@ class SettingsView extends GetWidget<SettingsController> {
             MySliderView(
                 preferenceKey: MyConstants.sharedPrefBottomSheetHeight,
                 callback: (double theValue) {
-                  print("Changed to $theValue");
+                  myPrint("Changed to $theValue");
                 }),
             returnOurDivider(context: context),
             Text(
@@ -90,7 +91,7 @@ class SettingsView extends GetWidget<SettingsController> {
                   preferenceKey: "chip_list_with_multiselect",
                   chipNames: ["one", "two", "three"],
                   callback: (List<int> theList) {
-                    print(theList);
+                    myPrint(theList.toString());
                   }),
             ),
             returnOurDivider(context: context),
@@ -104,7 +105,7 @@ class SettingsView extends GetWidget<SettingsController> {
                   preferenceKey: "chip_list_without_multiselect",
                   chipNames: ["one", "two", "three"],
                   callback: (List<int> theList) {
-                    print(theList);
+                    myPrint(theList.toString());
                   }),
             ),
             returnOurDivider(context: context),

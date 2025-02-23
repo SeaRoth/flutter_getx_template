@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_template/app/globals.dart';
+import 'package:flutter_getx_template/app/helpers/print_debug/build_print.dart';
 import 'package:flutter_getx_template/app/models/screen_constants.dart';
 import 'package:flutter_getx_template/app/routes/app_pages.dart';
 import 'package:get/get.dart';
@@ -14,7 +15,7 @@ class RootView extends GetView<RootController> {
     final statusBarHeight = Get.statusBarHeight / context.mediaQuery.devicePixelRatio;
     var screenHeight = returnHeightOfDevice(context);
     var screenWidth = returnWidthOfDevice(context);
-    print("statusBarHeight: $statusBarHeight, screenHeight: $screenHeight, screenWidth: $screenWidth");
+    myPrint("statusBarHeight: $statusBarHeight, screenHeight: $screenHeight, screenWidth: $screenWidth");
 
     var sc = ScreenConstants(statusBarHeight: statusBarHeight, height: screenHeight, width: screenWidth);
     getIt.registerSingleton<ScreenConstants>(sc);

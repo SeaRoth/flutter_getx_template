@@ -1,3 +1,4 @@
+import "package:flutter_getx_template/app/helpers/print_debug/build_print.dart";
 import "package:intl/intl.dart";
 
 class MyNumberFormatter {
@@ -20,7 +21,7 @@ class MyNumberFormatter {
       }
       return (numerator / denominator * 100).truncateToDouble();
     } catch (e) {
-      print('Error occurred: $e');
+      myPrint('Error occurred: $e');
       return 0;
     }
   }
