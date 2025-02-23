@@ -10,15 +10,15 @@ dependencies:
   flutter:
     sdk: flutter
   auto_size_text: ^3.0.0
-  cached_network_image: ^3.3.1
-  chip_list: ^2.4.4+8
-  cupertino_icons: ^1.0.6
-  get: ^5.0.0-release-candidate-5
+  cached_network_image: ^3.4.1
+  chip_list: ^3.1.0
+  cupertino_icons: ^1.0.8
+  get: ^5.0.0-release-candidate-9.3.0
   get_storage:
   get_it: ^8.0.3
-  palette_generator: ^0.3.3+3
-  shared_preferences: ^2.2.2
-  timeago: ^3.6.0
+  palette_generator: ^0.3.3+6
+  shared_preferences: ^2.5.2
+  timeago: ^3.7.0
 
 dev_dependencies:
   flutter_test:

@@ -24,7 +24,6 @@ class ChipListView extends GetView<ChipListController> {
     return Obx(() => ChipList(
           listOfChipNames: chipNames,
           supportsMultiSelect: multiSelect,
-          listOfChipIndicesCurrentlySeclected: controller.selectedMatchQueueIds.toList(),
           // activeBgColorList: [Colors.red, Colors.black, Colors.yellow],
           // activeTextColorList: [Colors.white, Colors.white, Colors.black],
           // checkmarkColor: Theme.of(context).colorScheme.onSurfaceVariant,
@@ -48,7 +47,7 @@ class ChipListView extends GetView<ChipListController> {
             controller.saveMultiSelectState();
             print("clicked $val and ${controller.selectedMatchQueueIds.toString()}");
             callback(controller.selectedMatchQueueIds.toList());
-          },
+          }, listOfChipIndicesCurrentlySelected: controller.selectedMatchQueueIds.toList(),
         ));
   }
 }
