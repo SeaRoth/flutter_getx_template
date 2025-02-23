@@ -19,6 +19,7 @@ dependencies:
   palette_generator: ^0.3.3+6
   shared_preferences: ^2.5.2
   timeago: ^3.7.0
+  flutter_launcher_icons: ^0.14.3
 
 dev_dependencies:
   flutter_test:
