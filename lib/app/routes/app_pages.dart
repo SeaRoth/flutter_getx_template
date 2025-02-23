@@ -1,5 +1,7 @@
 import 'package:flutter_getx_template/app/modules/details/bindings/details_binding.dart';
 import 'package:flutter_getx_template/app/modules/details/views/details_view.dart';
+import 'package:flutter_getx_template/app/modules/friends/bindings/friends_binding.dart';
+import 'package:flutter_getx_template/app/modules/friends/views/friends_view.dart';
 import 'package:flutter_getx_template/app/modules/home/bindings/home_binding.dart';
 import 'package:flutter_getx_template/app/modules/home/views/home_view.dart';
 import 'package:flutter_getx_template/app/modules/main/bindings/main_binding.dart';
@@ -46,6 +48,22 @@ class AppPages {
                 preventDuplicates: true,
                 transition: Transition.size,
                 binding: DetailsBinding()),
+            GetPage(
+                middlewares: [],
+                name: _Paths.pathBlank,
+                page: () => DetailsView(),
+                title: 'Blank',
+                preventDuplicates: true,
+                transition: Transition.size,
+                binding: DetailsBinding()),
+            GetPage(
+              name: _Paths.pathFriends,
+              title: "Friends",
+              preventDuplicates: true,
+              transition: Transition.size,
+              page: () => const FriendsView(),
+              binding: FriendsBinding(),
+            ),
             GetPage(
               name: _Paths.pathSettings,
               title: "Settings",

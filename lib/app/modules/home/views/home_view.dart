@@ -12,15 +12,12 @@ class HomeView extends GetView<HomeController> {
   Widget build(BuildContext context) {
     final List<BottomNavigationBarItem> items = [
       const BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
-      const BottomNavigationBarItem(icon: Icon(Icons.details_rounded), label: 'Add'),
+      const BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Add'),
       BottomNavigationBarItem(
-        icon: ImageIcon(
-          AssetImage('assets/icon_small.png'),
-          color: Colors.black,
-        ),
+        icon: Icon(Icons.add_box_outlined),
         label: 'My Label',
       ),
-      const BottomNavigationBarItem(icon: Icon(Icons.person), label: 'People'),
+      const BottomNavigationBarItem(icon: Icon(Icons.people), label: 'People'),
       const BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
     ];
     return Column(
@@ -39,7 +36,7 @@ class HomeView extends GetView<HomeController> {
                   ),
                 ]),
                 bottomNavigationBar: IndexedRouteBuilder(
-                    routes: const [Routes.routeMain, Routes.routeDetails, "add button", Routes.routeSettings],
+                    routes: const [Routes.routeMain, Routes.routeDetails, "add button", Routes.routeFriends, Routes.routeSettings],
                     builder: (context, routes, index) {
                       final delegate = context.delegate;
 
@@ -53,46 +50,6 @@ class HomeView extends GetView<HomeController> {
                             }
                           },
                           items: items);
-                      //   items: const [
-                      //     // _Paths.HOME + [Empty]
-                      //     BottomNavigationBarItem(
-                      //       icon: Icon(Icons.stars_rounded),
-                      //       label: 'Main',
-                      //     ),
-                      //     // _Paths.HOME + Routes.PROFILE
-                      //     BottomNavigationBarItem(
-                      //       icon: Icon(Icons.account_box_rounded),
-                      //       label: 'Details',
-                      //     ),
-                      //     // _Paths.HOME + _Paths.PRODUCTS
-                      //     BottomNavigationBarItem(
-                      //       icon: Icon(Icons.account_box_rounded),
-                      //       label: 'Settings',
-                      //     ),
-                      //   ],
-                      // );
-
-                      // return BottomNavigationBar(
-                      //   currentIndex: index,
-                      //   onTap: (value) => delegate.toNamed(routes[value]),
-                      //   items: const [
-                      //     // _Paths.HOME + [Empty]
-                      //     BottomNavigationBarItem(
-                      //       icon: Icon(Icons.stars_rounded),
-                      //       label: 'Main',
-                      //     ),
-                      //     // _Paths.HOME + Routes.PROFILE
-                      //     BottomNavigationBarItem(
-                      //       icon: Icon(Icons.account_box_rounded),
-                      //       label: 'Details',
-                      //     ),
-                      //     // _Paths.HOME + _Paths.PRODUCTS
-                      //     BottomNavigationBarItem(
-                      //       icon: Icon(Icons.account_box_rounded),
-                      //       label: 'Settings',
-                      //     ),
-                      //   ],
-                      // );
                     }),
               );
             },
