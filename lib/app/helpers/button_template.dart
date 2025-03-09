@@ -1,8 +1,9 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
-Widget returnButtonCenter(BuildContext context, String buttonText, Function onClick, {Color? tintColor, Color? textColor}) {
-  textColor ??= Theme.of(context).colorScheme.onPrimary;
+Widget returnButtonCenter({required BuildContext context, required String buttonText, required Function onClick, Color? tintColor, Color? textColor}) {
+  textColor ??= Theme.of(context).colorScheme.onSecondary;
+  tintColor ??= Theme.of(context).colorScheme.onSurface;
   return Builder(
     builder: (context) {
       return GestureDetector(

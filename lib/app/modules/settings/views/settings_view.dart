@@ -67,7 +67,7 @@ class SettingsView extends GetWidget<SettingsController> {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: returnButtonCenter(context, "Show Bottom Sheet", () {
+                    child: returnButtonCenter(context: context, buttonText: "Show Bottom Sheet", onClick: () {
                       createBottomSheetDialog(
                           context: context, headerWidget: AutoSizeText("Title"), contentsWidget: AutoSizeText("Body"));
                     }),

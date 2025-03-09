@@ -17,23 +17,32 @@ class MainView extends GetWidget<MainController> {
           mainAxisSize: MainAxisSize.min,
           children: [
             Center(
-              child: Image(
-                image: AssetImage("assets/icon_small.png"),
-                color: null,
-                fit: BoxFit.scaleDown,
-                alignment: Alignment.center,
-              )
+                child: Image(
+                  image: AssetImage("assets/icon_small.png"),
+                  color: null,
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.center,
+                )
             ),
             AutoSizeText(
               'Main View',
               maxLines: 1,
-              style: Theme.of(context).textTheme.displaySmall,
+              style: Theme
+                  .of(context)
+                  .textTheme
+                  .displaySmall,
             ),
-            Obx(() => AutoSizeText(
+            Obx(() =>
+                AutoSizeText(
                   controller.rewardsText.value,
-                  style: Theme.of(context).textTheme.titleLarge?.copyWith(color: colorPrimary),
+                  style: Theme
+                      .of(context)
+                      .textTheme
+                      .titleLarge
+                      ?.copyWith(color: colorPrimary),
                 )),
-            Obx(() => Visibility(
+            Obx(() =>
+                Visibility(
                   visible: controller.daysOfWeek.isNotEmpty,
                   child: ListView.separated(
                     separatorBuilder: (context, index) => const Divider(height: 1, color: Colors.black38),
@@ -48,7 +57,13 @@ class MainView extends GetWidget<MainController> {
                             child: GestureDetector(
                               onTap: () {
                                 createBottomSheetDialog(
-                                    context: context, headerWidget: AutoSizeText("day"), contentsWidget: AutoSizeText(day));
+                                    context: context, headerWidget: Center(child: AutoSizeText("day", style: Theme
+                                    .of(context)
+                                    .textTheme
+                                    .displaySmall,
+                                    textAlign: TextAlign.center)),
+                                    contentsWidget: AutoSizeText
+                                      (day));
                               },
                               child: Padding(
                                 // Add padding for better touch area
