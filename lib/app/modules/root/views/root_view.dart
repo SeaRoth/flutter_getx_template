@@ -15,7 +15,7 @@ class RootView extends GetView<RootController> {
     final statusBarHeight = Get.statusBarHeight / context.mediaQuery.devicePixelRatio;
     var screenHeight = returnHeightOfDevice(context);
     var screenWidth = returnWidthOfDevice(context);
-    myPrint("statusBarHeight: $statusBarHeight, screenHeight: $screenHeight, screenWidth: $screenWidth");
+    //myPrint("statusBarHeight: $statusBarHeight, screenHeight: $screenHeight, screenWidth: $screenWidth");
 
     var sc = ScreenConstants(statusBarHeight: statusBarHeight, height: screenHeight, width: screenWidth);
     getIt.registerSingleton<ScreenConstants>(sc);
