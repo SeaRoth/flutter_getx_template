@@ -22,6 +22,7 @@ class CustomBottomNavigationBar extends StatefulWidget {
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   @override
   Widget build(BuildContext context) {
+    WidgetsFlutterBinding.ensureInitialized();
     return SizedBox(
       height: 60,
       child: Stack(
@@ -32,9 +33,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               return CustomPaint(
                 size: Size(MediaQuery.of(context).size.width, 80),
                 painter: BottomNavBarPainter(
-                  backgroundColor: controller.currentTheme.value == ThemeData.light()
-                      ? Get.theme.colorScheme.surface
-                      : Get.theme.colorScheme.surface,
+                  backgroundColor: Get.theme.colorScheme.surface,
                 ),
               );
             },

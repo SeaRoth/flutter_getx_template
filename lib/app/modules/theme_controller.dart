@@ -4,7 +4,7 @@ import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeController extends GetxController {
-  final Rx<ThemeData> currentTheme = ThemeData.dark().obs;
+  final Rx<ThemeData> currentTheme = ThemeData.light().obs;
 
   @override
   Future<void> onReady() async {
@@ -16,21 +16,6 @@ class ThemeController extends GetxController {
       changeThemeWithString("light");
     }
     super.onReady();
-  }
-
-  void changeTheme(ThemeData newTheme) {
-    currentTheme.value = newTheme;
-    Get.changeTheme(newTheme);
-  }
-
-  void toggleTheme() {
-    if (currentTheme.value == ThemeData.light()) {
-      currentTheme.value = ThemeData.dark();
-      Get.changeTheme(ThemeData.dark());
-    } else {
-      currentTheme.value = ThemeData.light();
-      Get.changeTheme(ThemeData.light());
-    }
   }
 
   void changeThemeWithString(String themeName) {

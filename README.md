@@ -24,3 +24,6 @@
 
 ## Run this command to change the package name for both platforms.
 1. dart run change_app_package_name:main com.new.package.name
+
+# Add a custom submodule 
+`git submodule add https://github.com/org/repo.git`
