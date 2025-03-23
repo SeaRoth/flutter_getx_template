@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_getx_template/app/globals.dart';
 import 'package:flutter_getx_template/app/helpers/number_formatter.dart';
 import 'package:flutter_getx_template/app/helpers/print_debug/build_print.dart';
+import 'package:flutter_getx_template/app/modules/loading/loading_controller.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -13,6 +14,7 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await GetStorage.init("flutter_template_db");
   Get.put(ThemeController());
+  Get.put(LoadingController());
 
   try {
     runApp(

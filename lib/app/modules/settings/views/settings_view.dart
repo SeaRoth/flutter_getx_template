@@ -8,6 +8,7 @@ import 'package:flutter_getx_template/app/helpers/chip_list/chip_list_view.dart'
 import 'package:flutter_getx_template/app/helpers/our_divider.dart';
 import 'package:flutter_getx_template/app/helpers/slider/my_slider_view.dart';
 import 'package:flutter_getx_template/app/helpers/switch/adaptive_switch_view.dart';
+import 'package:flutter_getx_template/app/modules/loading/loading_model.dart';
 import 'package:get/get.dart';
 
 import '../../../helpers/print_debug/build_print.dart';
@@ -55,6 +56,19 @@ class SettingsView extends GetWidget<SettingsController> {
                   },
                 ),
               ],
+            ),
+            returnOurDivider(context: context),
+            Center(
+              child: returnButtonCenter(context: context, buttonText: "Show loading screen", onClick: () {
+                controller.loadingController.addLoadingModel(LoadingModel(
+                    loadingText: "Loading something",
+                    loadingImage: "loadingImage",
+                    loadingFunctionToRun: () async {
+                      myPrint("Starting async operation...");
+                      await Future.delayed(const Duration(seconds: 2));
+                      myPrint("Async operation completed!");
+                    }));
+              }),
             ),
             returnOurDivider(context: context),
             Row(

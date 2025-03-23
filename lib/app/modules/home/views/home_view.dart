@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 import 'package:flutter_getx_template/app/helpers/bottom_sheet_helper.dart';
 import 'package:flutter_getx_template/app/modules/home/views/my_custom_bottom_nav_bar.dart';
+import 'package:flutter_getx_template/app/modules/loading/loading_view.dart';
 import 'package:flutter_getx_template/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
@@ -26,41 +27,46 @@ class HomeView extends GetView<HomeController> {
 
     return Padding(
       padding: EdgeInsets.fromLTRB(0, 0, 0, bottomPadding),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.center,
-        mainAxisAlignment: MainAxisAlignment.center,
+      child: Stack(
         children: [
-          Expanded(
-            child: GetRouterOutlet.builder(
-              route: Routes.routeHome,
-              builder: (context) {
-                return Scaffold(
-                  body: Stack(children: [
-                    GetRouterOutlet(
-                      initialRoute: Routes.routeMain,
-                      anchorRoute: Routes.routeHome,
-                    ),
-                  ]),
-                  bottomNavigationBar: IndexedRouteBuilder(
-                      routes: const [Routes.routeMain, Routes.routeDetails, "add button", Routes.routeFriends, Routes.routeSettings],
-                      builder: (context, routes, index) {
-                        final delegate = context.delegate;
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Expanded(
+                child: GetRouterOutlet.builder(
+                  route: Routes.routeHome,
+                  builder: (context) {
+                    return Scaffold(
+                      body: Stack(children: [
+                        GetRouterOutlet(
+                          initialRoute: Routes.routeMain,
+                          anchorRoute: Routes.routeHome,
+                        ),
+                      ]),
+                      bottomNavigationBar: IndexedRouteBuilder(
+                          routes: const [Routes.routeMain, Routes.routeDetails, "add button", Routes.routeFriends, Routes.routeSettings],
+                          builder: (context, routes, index) {
+                            final delegate = context.delegate;
 
-                        return CustomBottomNavigationBar(
-                            currentIndex: index,
-                            onTap: (value) {
-                              if (value == 2) {
-                                createBottomSheetDialog(context: context, contentsWidget: Text("hi"), headerWidget: Text("hi"));
-                              } else {
-                                delegate.toNamed(routes[value]);
-                              }
-                            },
-                            items: items);
-                      }),
-                );
-              },
-            ),
+                            return CustomBottomNavigationBar(
+                                currentIndex: index,
+                                onTap: (value) {
+                                  if (value == 2) {
+                                    createBottomSheetDialog(context: context, contentsWidget: Text("hi"), headerWidget: Text("hi"));
+                                  } else {
+                                    delegate.toNamed(routes[value]);
+                                  }
+                                },
+                                items: items);
+                          }),
+                    );
+                  },
+                ),
+              ),
+            ],
           ),
+          LoadingView()
         ],
       ),
     );
