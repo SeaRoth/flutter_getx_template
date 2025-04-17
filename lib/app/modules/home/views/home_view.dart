@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart' show SystemUiOverlayStyle;
 import 'package:flutter_getx_template/app/helpers/bottom_sheet_helper.dart';
 import 'package:flutter_getx_template/app/modules/home/views/my_custom_bottom_nav_bar.dart';
 import 'package:flutter_getx_template/app/modules/loading/loading_view.dart';
 import 'package:flutter_getx_template/app/routes/app_pages.dart';
 import 'package:get/get.dart';
 import '../controllers/home_controller.dart';
-import 'package:flutter/services.dart';
 
 class HomeView extends GetView<HomeController> {
   const HomeView({super.key});

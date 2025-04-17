@@ -7,6 +7,11 @@ class ThemeController extends GetxController {
   final Rx<ThemeData> currentTheme = ThemeData.light().obs;
 
   @override
+  void onInit() {
+    super.onInit();
+  }
+
+  @override
   Future<void> onReady() async {
     final prefs = await SharedPreferences.getInstance();
     final useDarkMode = prefs.getBool(MyConstants.sharedPrefUseDarkMode) ?? false;

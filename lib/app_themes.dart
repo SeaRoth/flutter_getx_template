@@ -7,12 +7,10 @@ class AppThemes {
       primary: Colors.blue,
       secondary: Colors.green,
       tertiary: Colors.purple,
-      background: Colors.grey,
       surface: Colors.white, // Explicitly set surface to white
       onPrimary: Colors.white,
       onSecondary: Colors.white,
       onTertiary: Colors.white,
-      onBackground: Colors.black,
       onSurface: Colors.black,
     ),
     // ... other light theme properties
@@ -24,12 +22,10 @@ class AppThemes {
       primary: Colors.blue[200]!,
       secondary: Colors.green[200]!,
       tertiary: Colors.purple[200]!,
-      background: Colors.grey[900]!,
       surface: Colors.black, // Explicitly set surface to black
       onPrimary: Colors.black,
       onSecondary: Colors.black,
       onTertiary: Colors.black,
-      onBackground: Colors.white,
       onSurface: Colors.white,
     ),
     // ... other dark theme properties
