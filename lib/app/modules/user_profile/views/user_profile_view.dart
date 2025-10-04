@@ -84,7 +84,11 @@ class UserProfileView extends GetView<UserProfileController> {
                             style:
                                 Theme.of(context).textTheme.bodySmall?.copyWith(
                                       fontStyle: FontStyle.italic,
-                                      color: Theme.of(context).primaryColor,
+                                      color: Theme.of(context).brightness ==
+                                              Brightness.dark
+                                          ? Colors.lightBlue[300]
+                                          : Colors.blue[700],
+                                      fontWeight: FontWeight.w500,
                                     ),
                             textAlign: TextAlign.center,
                           ),

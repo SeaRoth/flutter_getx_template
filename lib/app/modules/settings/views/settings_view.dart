@@ -23,159 +23,147 @@ class SettingsView extends GetWidget<SettingsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: AutoSizeText(
-                'Settings view',
-                maxLines: 1,
-                style: Theme.of(context).textTheme.displaySmall,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: AutoSizeText(
+                  'Settings view 🔥 Hot Reload Test!',
+                  maxLines: 1,
+                  style: Theme.of(context).textTheme.displaySmall,
+                ),
               ),
-            ),
-            Center(
-              child: Obx(() => AutoSizeText(
-                    controller.settingsText.value,
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleLarge
-                        ?.copyWith(color: colorPrimary),
-                  )),
-            ),
-            returnOurDivider(context: context),
-            Row(
-              children: [
-                Text(
-                  "Dark Mode",
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                AdaptiveSwitchView(
-                  preferenceKey: MyConstants.sharedPrefUseDarkMode,
-                  callback: (bool onOrOff) {
-                    if (onOrOff) {
-                      controller.themeController.changeThemeWithString('dark');
-                    } else {
-                      controller.themeController.changeThemeWithString('light');
-                    }
-                  },
-                ),
-              ],
-            ),
-            returnOurDivider(context: context),
-            Center(
-              child: returnButtonCenter(
-                  context: context,
-                  buttonText: "Show loading screen",
-                  onClick: () {
-                    controller.loadingController.addLoadingModel(LoadingModel(
-                        loadingText: "Loading something",
-                        loadingImage: "loadingImage",
-                        loadingFunctionToRun: () async {
-                          myPrint("Starting async operation...");
-                          await Future.delayed(const Duration(seconds: 2));
-                          myPrint("Async operation completed!");
-                        }));
-                  }),
-            ),
-            returnOurDivider(context: context),
-            Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text(
-                  "Bottom sheet height",
-                  style: Theme.of(context).textTheme.titleLarge,
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: returnButtonCenter(
-                        context: context,
-                        buttonText: "Show Bottom Sheet",
-                        onClick: () {
-                          createBottomSheetDialog(
-                              context: context,
-                              headerWidget: AutoSizeText("Title"),
-                              contentsWidget: AutoSizeText("Body"));
-                        }),
+              Center(
+                child: Obx(() => AutoSizeText(
+                      controller.settingsText.value,
+                      style: Theme.of(context)
+                          .textTheme
+                          .titleLarge
+                          ?.copyWith(color: colorPrimary),
+                    )),
+              ),
+              returnOurDivider(context: context),
+              Row(
+                children: [
+                  Text(
+                    "Dark Mode",
+                    style: Theme.of(context).textTheme.titleLarge,
                   ),
-                )
-              ],
-            ),
-            MySliderView(
-                preferenceKey: MyConstants.sharedPrefBottomSheetHeight,
-                callback: (double theValue) {
-                  myPrint("Changed to $theValue");
-                }),
-            returnOurDivider(context: context),
-            Text(
-              "Chip list with Multiselect",
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            Center(
-              child: ChipListView(
-                  multiSelect: true,
-                  preferenceKey: "chip_list_with_multiselect",
-                  chipNames: ["one", "two", "three"],
-                  callback: (List<int> theList) {
-                    myPrint(theList.toString());
-                  }),
-            ),
-            returnOurDivider(context: context),
-            Text(
-              "Chip list without Multiselect",
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            Center(
-              child: ChipListView(
-                  multiSelect: false,
-                  preferenceKey: "chip_list_without_multiselect",
-                  chipNames: ["one", "two", "three"],
-                  callback: (List<int> theList) {
-                    myPrint(theList.toString());
-                  }),
-            ),
-            returnOurDivider(context: context),
-            Text(
-              "Loading Module Test",
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  final loadingController = Get.find<LoadingController>();
-                  loadingController.addLoadingModel(
-                    LoadingModel(
-                      loadingText: "Testing loading module for 5 seconds...",
-                      loadingImage: "",
-                      loadingFunctionToRun: () async {
-                        // Simulate a 5-second operation
-                        await Future.delayed(const Duration(seconds: 5));
-                      },
+                  AdaptiveSwitchView(
+                    preferenceKey: MyConstants.sharedPrefUseDarkMode,
+                    callback: (bool onOrOff) {
+                      if (onOrOff) {
+                        controller.themeController
+                            .changeThemeWithString('dark');
+                      } else {
+                        controller.themeController
+                            .changeThemeWithString('light');
+                      }
+                    },
+                  ),
+                ],
+              ),
+              returnOurDivider(context: context),
+              Row(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  Text(
+                    "Bottom sheet height",
+                    style: Theme.of(context).textTheme.titleLarge,
+                  ),
+                  Expanded(
+                    child: Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: returnButtonCenter(
+                          context: context,
+                          buttonText: "Show Bottom Sheet",
+                          onClick: () {
+                            createBottomSheetDialog(
+                                context: context,
+                                headerWidget: AutoSizeText("Title"),
+                                contentsWidget: AutoSizeText("Body"));
+                          }),
                     ),
-                  );
-                },
-                child: const Text("Show Loading for 5 seconds"),
+                  )
+                ],
               ),
-            ),
-            returnOurDivider(context: context),
-            Text(
-              "User Profile Module",
-              style: Theme.of(context).textTheme.titleLarge,
-            ),
-            Center(
-              child: ElevatedButton(
-                onPressed: () {
-                  // Initialize the binding and navigate to User Profile
-                  UserProfileBinding().dependencies();
-                  Get.to(() => const UserProfileView());
-                },
-                child: const Text("Open User Profile"),
+              MySliderView(
+                  preferenceKey: MyConstants.sharedPrefBottomSheetHeight,
+                  callback: (double theValue) {
+                    myPrint("Changed to $theValue");
+                  }),
+              returnOurDivider(context: context),
+              Text(
+                "Chip list with Multiselect",
+                style: Theme.of(context).textTheme.titleLarge,
               ),
-            ),
-            returnOurDivider(context: context),
-          ],
+              Center(
+                child: ChipListView(
+                    multiSelect: true,
+                    preferenceKey: "chip_list_with_multiselect",
+                    chipNames: ["one", "two", "three"],
+                    callback: (List<int> theList) {
+                      myPrint(theList.toString());
+                    }),
+              ),
+              returnOurDivider(context: context),
+              Text(
+                "Chip list without Multiselect",
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              Center(
+                child: ChipListView(
+                    multiSelect: false,
+                    preferenceKey: "chip_list_without_multiselect",
+                    chipNames: ["one", "two", "three"],
+                    callback: (List<int> theList) {
+                      myPrint(theList.toString());
+                    }),
+              ),
+              returnOurDivider(context: context),
+              Text(
+                "Loading Module Test",
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    final loadingController = Get.find<LoadingController>();
+                    loadingController.addLoadingModel(
+                      LoadingModel(
+                        loadingText: "Testing loading module for 5 seconds...",
+                        loadingImage: "",
+                        loadingFunctionToRun: () async {
+                          // Simulate a 5-second operation
+                          await Future.delayed(const Duration(seconds: 5));
+                        },
+                      ),
+                    );
+                  },
+                  child: const Text("Show Loading for 5 seconds"),
+                ),
+              ),
+              returnOurDivider(context: context),
+              Text(
+                "User Profile Module",
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              Center(
+                child: ElevatedButton(
+                  onPressed: () {
+                    // Initialize the binding and navigate to User Profile
+                    UserProfileBinding().dependencies();
+                    Get.to(() => const UserProfileView());
+                  },
+                  child: const Text("Open User Profile"),
+                ),
+              ),
+              returnOurDivider(context: context),
+            ],
+          ),
         ),
       ),
     );
