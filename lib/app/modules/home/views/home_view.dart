@@ -15,11 +15,19 @@ class HomeView extends GetView<HomeController> {
       const BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
       const BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Add'),
       BottomNavigationBarItem(
-        icon: Icon(Icons.add_box_outlined),
+        icon: SizedBox(
+          width: 24,
+          height: 24,
+          child: Image.asset(
+            'assets/icon_small.png',
+            fit: BoxFit.contain,
+          ),
+        ),
         label: 'My Label',
       ),
       const BottomNavigationBarItem(icon: Icon(Icons.people), label: 'People'),
-      const BottomNavigationBarItem(icon: Icon(Icons.settings), label: 'Settings'),
+      const BottomNavigationBarItem(
+          icon: Icon(Icons.settings), label: 'Settings'),
     ];
     final bottomPadding = MediaQuery.of(context).padding.bottom;
 
@@ -43,7 +51,13 @@ class HomeView extends GetView<HomeController> {
                         ),
                       ]),
                       bottomNavigationBar: IndexedRouteBuilder(
-                          routes: const [Routes.routeMain, Routes.routeDetails, "add button", Routes.routeFriends, Routes.routeSettings],
+                          routes: const [
+                            Routes.routeMain,
+                            Routes.routeDetails,
+                            "add button",
+                            Routes.routeFriends,
+                            Routes.routeSettings
+                          ],
                           builder: (context, routes, index) {
                             final delegate = context.delegate;
 
@@ -51,7 +65,10 @@ class HomeView extends GetView<HomeController> {
                                 currentIndex: index,
                                 onTap: (value) {
                                   if (value == 2) {
-                                    createBottomSheetDialog(context: context, contentsWidget: Text("hi"), headerWidget: Text("hi"));
+                                    createBottomSheetDialog(
+                                        context: context,
+                                        contentsWidget: Text("hi"),
+                                        headerWidget: Text("hi"));
                                   } else {
                                     delegate.toNamed(routes[value]);
                                   }

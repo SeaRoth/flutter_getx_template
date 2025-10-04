@@ -49,12 +49,14 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                   IconButton(
                     icon: widget.items[i].icon is Icon
                         ? widget.items[i].icon
-                        : ImageIcon(
-                            (widget.items[i].icon as ImageIcon).image,
-                            color: widget.currentIndex == i
-                                ? Colors.blue
-                                : Colors.grey,
-                          ),
+                        : widget.items[i].icon is ImageIcon
+                            ? ImageIcon(
+                                (widget.items[i].icon as ImageIcon).image,
+                                color: widget.currentIndex == i
+                                    ? Colors.blue
+                                    : Colors.grey,
+                              )
+                            : widget.items[i].icon,
                     color: widget.currentIndex == i ? Colors.blue : Colors.grey,
                     onPressed: () => widget.onTap(i),
                   ),
@@ -67,11 +69,14 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               backgroundColor: Colors.blue,
               child: widget.items[widget.items.length ~/ 2].icon is Icon
                   ? widget.items[widget.items.length ~/ 2].icon
-                  : ImageIcon(
-                      (widget.items[widget.items.length ~/ 2].icon as ImageIcon)
-                          .image,
-                      color: Colors.white,
-                    ),
+                  : widget.items[widget.items.length ~/ 2].icon is ImageIcon
+                      ? ImageIcon(
+                          (widget.items[widget.items.length ~/ 2].icon
+                                  as ImageIcon)
+                              .image,
+                          color: Colors.white,
+                        )
+                      : widget.items[widget.items.length ~/ 2].icon,
             ),
           ),
         ],
