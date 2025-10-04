@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_getx_template/app/constants.dart';
+import 'package:flutter_getx_template/app_themes.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ThemeController extends GetxController {
-  final Rx<ThemeData> currentTheme = ThemeData.light().obs;
+  final Rx<ThemeData> currentTheme = AppThemes.lightTheme.obs;
 
   @override
   void onInit() {
@@ -27,16 +28,19 @@ class ThemeController extends GetxController {
   void changeThemeWithString(String themeName) {
     switch (themeName) {
       case 'light':
-        currentTheme.value = ThemeData.light();
-        Get.changeTheme(ThemeData.light());
+        currentTheme.value = AppThemes.lightTheme;
+        Get.changeTheme(AppThemes.lightTheme);
+        AppThemes.setStatusBarStyle(false); // Light mode = dark status bar icons
         break;
       case 'dark':
-        currentTheme.value = ThemeData.dark();
-        Get.changeTheme(ThemeData.dark());
+        currentTheme.value = AppThemes.darkTheme;
+        Get.changeTheme(AppThemes.darkTheme);
+        AppThemes.setStatusBarStyle(true); // Dark mode = light status bar icons
         break;
       default:
-        currentTheme.value = ThemeData.light();
-        Get.changeTheme(ThemeData.light());
+        currentTheme.value = AppThemes.lightTheme;
+        Get.changeTheme(AppThemes.lightTheme);
+        AppThemes.setStatusBarStyle(false);
     }
     update(); // Notify GetBuilder widgets about the theme change
   }

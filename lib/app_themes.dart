@@ -1,8 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 class AppThemes {
   static final lightTheme = ThemeData(
     scaffoldBackgroundColor: Colors.grey[100], // Light background
+    appBarTheme: const AppBarTheme(
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.dark, // Dark icons for light mode
+        statusBarBrightness: Brightness.light,
+      ),
+    ),
     colorScheme: const ColorScheme.light(
       primary: Colors.blue,
       secondary: Colors.green,
@@ -18,6 +26,13 @@ class AppThemes {
 
   static final darkTheme = ThemeData(
     scaffoldBackgroundColor: Colors.grey[900], // Dark background
+    appBarTheme: const AppBarTheme(
+      systemOverlayStyle: SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: Brightness.light, // Light icons for dark mode
+        statusBarBrightness: Brightness.dark,
+      ),
+    ),
     colorScheme: ColorScheme.dark(
       primary: Colors.blue[200]!,
       secondary: Colors.green[200]!,
@@ -30,4 +45,15 @@ class AppThemes {
     ),
     // ... other dark theme properties
   );
+
+  // Helper method to apply status bar style
+  static void setStatusBarStyle(bool isDarkMode) {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: Colors.transparent,
+        statusBarIconBrightness: isDarkMode ? Brightness.light : Brightness.dark,
+        statusBarBrightness: isDarkMode ? Brightness.dark : Brightness.light,
+      ),
+    );
+  }
 }
