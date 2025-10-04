@@ -8,7 +8,10 @@ import 'package:flutter_getx_template/app/helpers/chip_list/chip_list_view.dart'
 import 'package:flutter_getx_template/app/helpers/our_divider.dart';
 import 'package:flutter_getx_template/app/helpers/slider/my_slider_view.dart';
 import 'package:flutter_getx_template/app/helpers/switch/adaptive_switch_view.dart';
+import 'package:flutter_getx_template/app/modules/loading/loading_controller.dart';
 import 'package:flutter_getx_template/app/modules/loading/loading_model.dart';
+import 'package:flutter_getx_template/app/modules/user_profile/views/user_profile_view.dart';
+import 'package:flutter_getx_template/app/modules/user_profile/bindings/user_profile_binding.dart';
 import 'package:get/get.dart';
 
 import '../../../helpers/print_debug/build_print.dart';
@@ -20,9 +23,9 @@ class SettingsView extends GetWidget<SettingsController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
+      body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
-          mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Center(
@@ -35,7 +38,10 @@ class SettingsView extends GetWidget<SettingsController> {
             Center(
               child: Obx(() => AutoSizeText(
                     controller.settingsText.value,
-                    style: Theme.of(context).textTheme.titleLarge?.copyWith(color: colorPrimary),
+                    style: Theme.of(context)
+                        .textTheme
+                        .titleLarge
+                        ?.copyWith(color: colorPrimary),
                   )),
             ),
             returnOurDivider(context: context),
@@ -59,16 +65,19 @@ class SettingsView extends GetWidget<SettingsController> {
             ),
             returnOurDivider(context: context),
             Center(
-              child: returnButtonCenter(context: context, buttonText: "Show loading screen", onClick: () {
-                controller.loadingController.addLoadingModel(LoadingModel(
-                    loadingText: "Loading something",
-                    loadingImage: "loadingImage",
-                    loadingFunctionToRun: () async {
-                      myPrint("Starting async operation...");
-                      await Future.delayed(const Duration(seconds: 2));
-                      myPrint("Async operation completed!");
-                    }));
-              }),
+              child: returnButtonCenter(
+                  context: context,
+                  buttonText: "Show loading screen",
+                  onClick: () {
+                    controller.loadingController.addLoadingModel(LoadingModel(
+                        loadingText: "Loading something",
+                        loadingImage: "loadingImage",
+                        loadingFunctionToRun: () async {
+                          myPrint("Starting async operation...");
+                          await Future.delayed(const Duration(seconds: 2));
+                          myPrint("Async operation completed!");
+                        }));
+                  }),
             ),
             returnOurDivider(context: context),
             Row(
@@ -81,10 +90,15 @@ class SettingsView extends GetWidget<SettingsController> {
                 Expanded(
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
-                    child: returnButtonCenter(context: context, buttonText: "Show Bottom Sheet", onClick: () {
-                      createBottomSheetDialog(
-                          context: context, headerWidget: AutoSizeText("Title"), contentsWidget: AutoSizeText("Body"));
-                    }),
+                    child: returnButtonCenter(
+                        context: context,
+                        buttonText: "Show Bottom Sheet",
+                        onClick: () {
+                          createBottomSheetDialog(
+                              context: context,
+                              headerWidget: AutoSizeText("Title"),
+                              contentsWidget: AutoSizeText("Body"));
+                        }),
                   ),
                 )
               ],
@@ -121,6 +135,44 @@ class SettingsView extends GetWidget<SettingsController> {
                   callback: (List<int> theList) {
                     myPrint(theList.toString());
                   }),
+            ),
+            returnOurDivider(context: context),
+            Text(
+              "Loading Module Test",
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  final loadingController = Get.find<LoadingController>();
+                  loadingController.addLoadingModel(
+                    LoadingModel(
+                      loadingText: "Testing loading module for 5 seconds...",
+                      loadingImage: "",
+                      loadingFunctionToRun: () async {
+                        // Simulate a 5-second operation
+                        await Future.delayed(const Duration(seconds: 5));
+                      },
+                    ),
+                  );
+                },
+                child: const Text("Show Loading for 5 seconds"),
+              ),
+            ),
+            returnOurDivider(context: context),
+            Text(
+              "User Profile Module",
+              style: Theme.of(context).textTheme.titleLarge,
+            ),
+            Center(
+              child: ElevatedButton(
+                onPressed: () {
+                  // Initialize the binding and navigate to User Profile
+                  UserProfileBinding().dependencies();
+                  Get.to(() => const UserProfileView());
+                },
+                child: const Text("Open User Profile"),
+              ),
             ),
             returnOurDivider(context: context),
           ],

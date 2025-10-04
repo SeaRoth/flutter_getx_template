@@ -304,7 +304,7 @@ create_ui_module() {
     local PROJECT_NAME=$3
     
     # Convert snake_case to PascalCase for class names
-    CLASS_NAME=$(echo "$MODULE_NAME" | sed 's/_\([a-z]\)/\U\1/g' | sed 's/^./\U&/')
+    CLASS_NAME=$(echo "$MODULE_NAME" | awk -F'_' '{for(i=1;i<=NF;i++) $i=toupper(substr($i,1,1)) substr($i,2)} 1' OFS='')
     
     mkdir -p "$MODULE_DIR/controllers"
     mkdir -p "$MODULE_DIR/views"
