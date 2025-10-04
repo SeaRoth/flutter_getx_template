@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-
-import 'app/modules/theme_controller.dart';
 import 'app/routes/app_pages.dart';
 
 class MyApp extends StatelessWidget {

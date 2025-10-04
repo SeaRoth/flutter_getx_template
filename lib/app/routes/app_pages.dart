@@ -7,7 +7,6 @@ import 'package:flutter_getx_template/app/modules/home/views/home_view.dart';
 import 'package:flutter_getx_template/app/modules/main/bindings/main_binding.dart';
 import 'package:flutter_getx_template/app/modules/main/views/main_view.dart';
 
-import 'package:flutter_getx_template/app/modules/settings/bindings/settings_binding.dart';
 import 'package:flutter_getx_template/app/modules/settings/views/settings_view.dart';
 import 'package:get/get.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
@@ -39,7 +38,12 @@ class AppPages {
           ],
           title: null,
           children: [
-            GetPage(name: _Paths.pathMain, page: () => const MainView(), title: 'Home', preventDuplicates: true, binding: MainBinding()),
+            GetPage(
+                name: _Paths.pathMain,
+                page: () => const MainView(),
+                title: 'Home',
+                preventDuplicates: true,
+                binding: MainBinding()),
             GetPage(
                 middlewares: [],
                 name: _Paths.pathDetails,
@@ -70,7 +74,7 @@ class AppPages {
               preventDuplicates: true,
               transition: Transition.size,
               page: () => const SettingsView(),
-              binding: SettingsBinding(),
+              // No binding needed - SettingsController is managed globally
             ),
           ],
         ),

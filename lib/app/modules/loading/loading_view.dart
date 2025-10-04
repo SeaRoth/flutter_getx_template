@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_getx_template/app/globals.dart';
 import 'package:flutter_getx_template/app/modules/loading/loading_controller.dart';
 import 'package:get/get.dart';
 
@@ -19,7 +18,7 @@ class LoadingView extends GetView<LoadingController> {
               Expanded(
                 child: Center(
                   child: Container(
-                    width: width/1.2,
+                    width: width / 1.2,
                     decoration: BoxDecoration(
                       shape: BoxShape.rectangle,
                       borderRadius: BorderRadius.all(Radius.circular(12)),
@@ -32,7 +31,13 @@ class LoadingView extends GetView<LoadingController> {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        Center(child: Text("Loading", style: Theme.of(context).textTheme.titleLarge?.copyWith(color: Colors.red)),),
+                        Center(
+                          child: Text("Loading",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .titleLarge
+                                  ?.copyWith(color: Colors.red)),
+                        ),
                         ListView.builder(
                             shrinkWrap: true,
                             scrollDirection: Axis.vertical,
@@ -43,7 +48,8 @@ class LoadingView extends GetView<LoadingController> {
                                 child: Container(
                                   decoration: BoxDecoration(
                                     shape: BoxShape.rectangle,
-                                    borderRadius: BorderRadius.all(Radius.circular(12)),
+                                    borderRadius:
+                                        BorderRadius.all(Radius.circular(12)),
                                     border: Border.all(
                                       color: Colors.white10,
                                       width: 2,
@@ -51,13 +57,24 @@ class LoadingView extends GetView<LoadingController> {
                                   ),
                                   child: Row(
                                     mainAxisAlignment: MainAxisAlignment.center,
-                                    crossAxisAlignment: CrossAxisAlignment.center,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.center,
                                     children: [
-                                      Visibility(visible: indexTopStats == 0, child: SizedBox(height: 20, width: 20, child: CircularProgressIndicator())),
+                                      Visibility(
+                                          visible: indexTopStats == 0,
+                                          child: SizedBox(
+                                              height: 20,
+                                              width: 20,
+                                              child:
+                                                  CircularProgressIndicator())),
                                       Padding(
-                                        padding: EdgeInsets.fromLTRB(6, 0, 0, 0),
-                                        child: Text(controller.loadingModelList[indexTopStats].loadingText),
-                                      )],
+                                        padding:
+                                            EdgeInsets.fromLTRB(6, 0, 0, 0),
+                                        child: Text(controller
+                                            .loadingModelList[indexTopStats]
+                                            .loadingText),
+                                      )
+                                    ],
                                   ),
                                 ),
                               );

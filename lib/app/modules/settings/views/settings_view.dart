@@ -29,9 +29,16 @@ class SettingsView extends GetWidget<SettingsController> {
     final RxInt sizeSelection =
         0.obs; // For size chips (0=small, 1=medium, 2=large)
 
+    // Trigger scroll restoration when view builds (e.g., when navigating back)
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      controller.onViewResumed();
+    });
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
+          controller: controller.scrollController,
+          key: const PageStorageKey<String>('settings_scroll'),
           padding: const EdgeInsets.all(16.0),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -259,7 +266,11 @@ class SettingsView extends GetWidget<SettingsController> {
                   onPressed: () {
                     // Initialize the binding and navigate to User Profile
                     UserProfileBinding().dependencies();
-                    Get.to(() => const UserProfileView());
+                    Get.to(
+                      () => const UserProfileView(),
+                      preventDuplicates: false,
+                      transition: Transition.cupertino,
+                    );
                   },
                 ),
               ),

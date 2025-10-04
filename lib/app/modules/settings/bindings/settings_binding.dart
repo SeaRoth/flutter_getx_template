@@ -1,9 +1,10 @@
-import 'package:flutter_getx_template/app/modules/settings/controller/settings_controller.dart';
 import 'package:get/get.dart';
 
 class SettingsBinding extends Binding {
   @override
   List<Bind> dependencies() {
-    return [Bind.put(SettingsController())];
+    // Settings controller is initialized globally in main.dart as permanent
+    // No need to create or bind it here
+    return [];
   }
 }

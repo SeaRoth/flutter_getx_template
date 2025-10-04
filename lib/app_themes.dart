@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 
 class AppThemes {
   static final lightTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.grey[100], // Light background
+    scaffoldBackgroundColor: Colors.grey[100], // Light gray background
     appBarTheme: const AppBarTheme(
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -25,7 +25,7 @@ class AppThemes {
   );
 
   static final darkTheme = ThemeData(
-    scaffoldBackgroundColor: Colors.grey[900], // Dark background
+    scaffoldBackgroundColor: Colors.grey[900], // Dark gray background
     appBarTheme: const AppBarTheme(
       systemOverlayStyle: SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
@@ -51,7 +51,8 @@ class AppThemes {
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: Colors.transparent,
-        statusBarIconBrightness: isDarkMode ? Brightness.light : Brightness.dark,
+        statusBarIconBrightness:
+            isDarkMode ? Brightness.light : Brightness.dark,
         statusBarBrightness: isDarkMode ? Brightness.dark : Brightness.light,
       ),
     );

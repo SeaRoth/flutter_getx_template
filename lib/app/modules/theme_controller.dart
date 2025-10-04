@@ -30,7 +30,8 @@ class ThemeController extends GetxController {
       case 'light':
         currentTheme.value = AppThemes.lightTheme;
         Get.changeTheme(AppThemes.lightTheme);
-        AppThemes.setStatusBarStyle(false); // Light mode = dark status bar icons
+        AppThemes.setStatusBarStyle(
+            false); // Light mode = dark status bar icons
         break;
       case 'dark':
         currentTheme.value = AppThemes.darkTheme;
