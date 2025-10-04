@@ -16,7 +16,8 @@ class CustomBottomNavigationBar extends StatefulWidget {
   });
 
   @override
-  State<CustomBottomNavigationBar> createState() => _CustomBottomNavigationBarState();
+  State<CustomBottomNavigationBar> createState() =>
+      _CustomBottomNavigationBarState();
 }
 
 class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
@@ -33,7 +34,7 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               return CustomPaint(
                 size: Size(MediaQuery.of(context).size.width, 80),
                 painter: BottomNavBarPainter(
-                  backgroundColor: Get.theme.colorScheme.surface,
+                  backgroundColor: Theme.of(context).colorScheme.surface,
                 ),
               );
             },
@@ -49,9 +50,11 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
                     icon: widget.items[i].icon is Icon
                         ? widget.items[i].icon
                         : ImageIcon(
-                      (widget.items[i].icon as ImageIcon).image,
-                      color: widget.currentIndex == i ? Colors.blue : Colors.grey,
-                    ),
+                            (widget.items[i].icon as ImageIcon).image,
+                            color: widget.currentIndex == i
+                                ? Colors.blue
+                                : Colors.grey,
+                          ),
                     color: widget.currentIndex == i ? Colors.blue : Colors.grey,
                     onPressed: () => widget.onTap(i),
                   ),
@@ -65,9 +68,10 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               child: widget.items[widget.items.length ~/ 2].icon is Icon
                   ? widget.items[widget.items.length ~/ 2].icon
                   : ImageIcon(
-                (widget.items[widget.items.length ~/ 2].icon as ImageIcon).image,
-                color: Colors.white,
-              ),
+                      (widget.items[widget.items.length ~/ 2].icon as ImageIcon)
+                          .image,
+                      color: Colors.white,
+                    ),
             ),
           ),
         ],

@@ -14,10 +14,11 @@ class ThemeController extends GetxController {
   @override
   Future<void> onReady() async {
     final prefs = await SharedPreferences.getInstance();
-    final useDarkMode = prefs.getBool(MyConstants.sharedPrefUseDarkMode) ?? false;
+    final useDarkMode =
+        prefs.getBool(MyConstants.sharedPrefUseDarkMode) ?? false;
     if (useDarkMode) {
       changeThemeWithString("dark");
-    }else {
+    } else {
       changeThemeWithString("light");
     }
     super.onReady();
@@ -37,5 +38,6 @@ class ThemeController extends GetxController {
         currentTheme.value = ThemeData.light();
         Get.changeTheme(ThemeData.light());
     }
+    update(); // Notify GetBuilder widgets about the theme change
   }
 }
