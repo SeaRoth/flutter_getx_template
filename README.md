@@ -19,11 +19,41 @@
 3. Turn on emulator/device
 4. Run it
 
-# Change package name and app name:
+# 🚀 Quick Project Creation (Automated)
+
+Use the automated script to quickly create a new project from this template:
+
+```bash
+./create_new_project.sh
+```
+
+The script will:
+1. 📝 Prompt you for a project name and package name
+2. 📁 Create a new project folder with your chosen name
+3. 📋 Copy all template files (excluding build artifacts and git history)
+4. 📦 Automatically change the package name using `change_app_package_name`
+5. 🔄 Run `flutter pub get` and clean up generated files
+6. ✅ Leave you with a ready-to-run Flutter project
+
+**Example usage:**
+```bash
+$ ./create_new_project.sh
+Enter the new project name: my_awesome_app
+Enter the package name: com.mycompany.myawesomeapp
+Enter the parent directory path: /Users/username/Projects
+```
+
+# 🔧 Manual Setup
+
+If you prefer to set up manually:
+
+## Change package name and app name:
 - Uses [change_app_package_name](https://pub.dev/packages/change_app_package_name)
 
-## Run this command to change the package name for both platforms.
-1. dart run change_app_package_name:main com.new.package.name
+### Run this command to change the package name for both platforms:
+```bash
+dart run change_app_package_name:main com.new.package.name
+```
 
 # Add a custom submodule 
 `git submodule add https://github.com/org/repo.git`
