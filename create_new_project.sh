@@ -112,6 +112,7 @@ rsync -av \
     --exclude='android/.gradle/' \
     --exclude='android/app/build/' \
     --exclude='android/build/' \
+    --exclude='android/app/.cxx/' \
     --exclude='*.log' \
     "$TEMPLATE_DIR/" "$TARGET_DIR/"
 

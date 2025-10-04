@@ -1,2 +1,0 @@
-/Users/coryrothert/Documents/GitHub/flutter_getx_template/android/app/.cxx/Debug/2ty5i2w1/x86_64/CMakeFiles/edit_cache.dir
-/Users/coryrothert/Documents/GitHub/flutter_getx_template/android/app/.cxx/Debug/2ty5i2w1/x86_64/CMakeFiles/rebuild_cache.dir
