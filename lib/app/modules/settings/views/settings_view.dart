@@ -4,6 +4,7 @@ import 'package:flutter_getx_template/app/constants.dart';
 import 'package:flutter_getx_template/app/globals.dart';
 import 'package:flutter_getx_template/app/helpers/bottom_sheet_helper.dart';
 import 'package:flutter_getx_template/app/helpers/button_template.dart';
+import 'package:flutter_getx_template/app/helpers/app_chip.dart';
 import 'package:flutter_getx_template/app/helpers/chip_list/chip_list_view.dart';
 import 'package:flutter_getx_template/app/helpers/our_divider.dart';
 import 'package:flutter_getx_template/app/helpers/slider/my_slider_view.dart';
@@ -22,6 +23,12 @@ class SettingsView extends GetWidget<SettingsController> {
 
   @override
   Widget build(BuildContext context) {
+    // State for AppChip demos
+    final RxList<int> appChipSelection = <int>[0].obs;
+    final RxInt choiceSelection = 1.obs; // For choice chips
+    final RxInt sizeSelection =
+        0.obs; // For size chips (0=small, 1=medium, 2=large)
+
     return Scaffold(
       body: SafeArea(
         child: SingleChildScrollView(
@@ -125,11 +132,103 @@ class SettingsView extends GetWidget<SettingsController> {
               ),
               returnOurDivider(context: context),
               Text(
+                "New AppChip Design System",
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(height: 8),
+              Text(
+                "Filter Chips (Multi-select):",
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 8),
+              Obx(() => AppChipGroup(
+                    labels: const [
+                      "Design",
+                      "Development",
+                      "Marketing",
+                      "Sales"
+                    ],
+                    selectedIndices: appChipSelection.toList(),
+                    multiSelect: true,
+                    type: AppChipType.filter,
+                    size: AppChipSize.medium,
+                    onSelectionChanged: (indices) {
+                      appChipSelection.assignAll(indices);
+                      myPrint("AppChip selection: $indices");
+                    },
+                  )),
+              const SizedBox(height: 12),
+              Text(
+                "Choice Chips (Single select):",
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 8),
+              Obx(() => AppChipGroup(
+                    labels: const ["Beginner", "Intermediate", "Advanced"],
+                    selectedIndices: [choiceSelection.value],
+                    multiSelect: false,
+                    type: AppChipType.choice,
+                    size: AppChipSize.medium,
+                    onSelectionChanged: (indices) {
+                      if (indices.isNotEmpty) {
+                        choiceSelection.value = indices.first;
+                        myPrint("Choice selection: ${indices.first}");
+                      }
+                    },
+                  )),
+              const SizedBox(height: 12),
+              Text(
+                "Different Sizes:",
+                style: Theme.of(context).textTheme.bodyMedium,
+              ),
+              const SizedBox(height: 8),
+              Obx(() => Row(
+                    children: [
+                      AppChip(
+                        label: "Small",
+                        size: AppChipSize.small,
+                        type: AppChipType.filter,
+                        isSelected: sizeSelection.value == 0,
+                        onTap: () {
+                          sizeSelection.value = 0;
+                          myPrint("Small chip selected");
+                        },
+                      ),
+                      const SizedBox(width: 8),
+                      AppChip(
+                        label: "Medium",
+                        size: AppChipSize.medium,
+                        type: AppChipType.filter,
+                        isSelected: sizeSelection.value == 1,
+                        onTap: () {
+                          sizeSelection.value = 1;
+                          myPrint("Medium chip selected");
+                        },
+                      ),
+                      const SizedBox(width: 8),
+                      AppChip(
+                        label: "Large",
+                        size: AppChipSize.large,
+                        type: AppChipType.filter,
+                        isSelected: sizeSelection.value == 2,
+                        onTap: () {
+                          sizeSelection.value = 2;
+                          myPrint("Large chip selected");
+                        },
+                      ),
+                    ],
+                  )),
+              returnOurDivider(context: context),
+              Text(
                 "Loading Module Test",
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               Center(
-                child: ElevatedButton(
+                child: AppButton(
+                  text: "Show Loading for 5 seconds",
+                  type: AppButtonType.primary,
+                  size: AppButtonSize.medium,
+                  isFullWidth: true,
                   onPressed: () {
                     final loadingController = Get.find<LoadingController>();
                     loadingController.addLoadingModel(
@@ -143,7 +242,6 @@ class SettingsView extends GetWidget<SettingsController> {
                       ),
                     );
                   },
-                  child: const Text("Show Loading for 5 seconds"),
                 ),
               ),
               returnOurDivider(context: context),
@@ -152,14 +250,63 @@ class SettingsView extends GetWidget<SettingsController> {
                 style: Theme.of(context).textTheme.titleLarge,
               ),
               Center(
-                child: ElevatedButton(
+                child: AppButton(
+                  text: "Open User Profile",
+                  type: AppButtonType.secondary,
+                  size: AppButtonSize.medium,
+                  isFullWidth: true,
+                  icon: const Icon(Icons.person, size: 20),
                   onPressed: () {
                     // Initialize the binding and navigate to User Profile
                     UserProfileBinding().dependencies();
                     Get.to(() => const UserProfileView());
                   },
-                  child: const Text("Open User Profile"),
                 ),
+              ),
+              returnOurDivider(context: context),
+              Text(
+                "Button Design System Demo",
+                style: Theme.of(context).textTheme.titleLarge,
+              ),
+              const SizedBox(height: 12),
+              AppButton(
+                text: "Primary Button",
+                type: AppButtonType.primary,
+                size: AppButtonSize.medium,
+                isFullWidth: true,
+                onPressed: () => myPrint("Primary button pressed"),
+              ),
+              const SizedBox(height: 8),
+              AppButton(
+                text: "Secondary Button",
+                type: AppButtonType.secondary,
+                size: AppButtonSize.medium,
+                isFullWidth: true,
+                onPressed: () => myPrint("Secondary button pressed"),
+              ),
+              const SizedBox(height: 8),
+              Row(
+                children: [
+                  Expanded(
+                    child: AppButton(
+                      text: "With Icon",
+                      type: AppButtonType.primary,
+                      size: AppButtonSize.small,
+                      icon: const Icon(Icons.star, size: 16),
+                      onPressed: () => myPrint("Icon button pressed"),
+                    ),
+                  ),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: AppButton(
+                      text: "Loading",
+                      type: AppButtonType.secondary,
+                      size: AppButtonSize.small,
+                      isLoading: true,
+                      onPressed: () {},
+                    ),
+                  ),
+                ],
               ),
               returnOurDivider(context: context),
             ],

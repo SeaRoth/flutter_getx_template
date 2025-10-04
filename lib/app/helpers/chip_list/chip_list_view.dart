@@ -12,28 +12,47 @@ class ChipListView extends GetView<ChipListController> {
 
   //final RxList<int> controller.selectedMatchQueueIds = <int>[0].obs;
 
-  const ChipListView({super.key, required this.multiSelect, required this.preferenceKey, required this.chipNames, required this.callback});
+  const ChipListView(
+      {super.key,
+      required this.multiSelect,
+      required this.preferenceKey,
+      required this.chipNames,
+      required this.callback});
 
   @override
   ChipListController get controller => Get.put(
-        ChipListController(preferenceKey: preferenceKey, multiSelect: multiSelect),
+        ChipListController(
+            preferenceKey: preferenceKey, multiSelect: multiSelect),
         tag: preferenceKey,
       );
 
   @override
   Widget build(BuildContext context) {
+    // Get theme-aware colors for consistent styling
+    final isDarkMode = Theme.of(context).brightness == Brightness.dark;
+    final primaryColor = Theme.of(context).colorScheme.primary;
+    final surfaceColor = Theme.of(context).colorScheme.surface;
+    final onSurfaceColor = Theme.of(context).colorScheme.onSurface;
+    final onPrimaryColor = Theme.of(context).colorScheme.onPrimary;
+
     return Obx(() => ChipList(
           listOfChipNames: chipNames,
           supportsMultiSelect: multiSelect,
-          // activeBgColorList: [Colors.red, Colors.black, Colors.yellow],
-          // activeTextColorList: [Colors.white, Colors.white, Colors.black],
-          // checkmarkColor: Theme.of(context).colorScheme.onSurfaceVariant,
-          // inactiveBgColorList: [Colors.white, Colors.white, Colors.white],
-          // inactiveTextColorList: [Colors.black, Colors.black, Colors.black],
+          // Active (selected) chip styling
+          activeBgColorList: List.filled(chipNames.length, primaryColor),
+          activeTextColorList: List.filled(chipNames.length, onPrimaryColor),
+          checkmarkColor: onPrimaryColor,
+          // Inactive (unselected) chip styling
+          inactiveBgColorList: List.filled(chipNames.length,
+              isDarkMode ? surfaceColor.withOpacity(0.3) : surfaceColor),
+          inactiveTextColorList: List.filled(chipNames.length, onSurfaceColor),
+          // Layout styling
+          borderRadiiList:
+              List.filled(chipNames.length, 12.0), // Consistent with buttons
           shouldWrap: true,
-          runSpacing: 2,
+          runSpacing: 8,
           padding: EdgeInsets.zero,
-          spacing: 2,
+          spacing: 8,
           extraOnToggle: (int val) {
             if (multiSelect) {
               if (controller.selectedMatchQueueIds.contains(val)) {
@@ -46,9 +65,12 @@ class ChipListView extends GetView<ChipListController> {
               controller.selectedMatchQueueIds.add(val);
             }
             controller.saveMultiSelectState();
-            myPrint("clicked $val and ${controller.selectedMatchQueueIds.toString()}");
+            myPrint(
+                "clicked $val and ${controller.selectedMatchQueueIds.toString()}");
             callback(controller.selectedMatchQueueIds.toList());
-          }, listOfChipIndicesCurrentlySelected: controller.selectedMatchQueueIds.toList(),
+          },
+          listOfChipIndicesCurrentlySelected:
+              controller.selectedMatchQueueIds.toList(),
         ));
   }
 }

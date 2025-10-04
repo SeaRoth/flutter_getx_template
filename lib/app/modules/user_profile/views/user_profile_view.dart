@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import '../controllers/user_profile_controller.dart';
+import 'package:flutter_getx_template/app/helpers/button_template.dart';
 
 class UserProfileView extends GetView<UserProfileController> {
   const UserProfileView({super.key});
@@ -97,9 +98,13 @@ class UserProfileView extends GetView<UserProfileController> {
                     ),
                   ),
                   const SizedBox(height: 20),
-                  ElevatedButton(
+                  AppButton(
+                    text: 'Refresh Data',
+                    type: AppButtonType.outlined,
+                    size: AppButtonSize.medium,
+                    isFullWidth: true,
+                    icon: const Icon(Icons.refresh, size: 20),
                     onPressed: controller.onRefresh,
-                    child: const Text('Refresh Data'),
                   ),
                 ],
               ),
