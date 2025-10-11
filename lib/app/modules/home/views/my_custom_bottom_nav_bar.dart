@@ -25,15 +25,17 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
   Widget build(BuildContext context) {
     WidgetsFlutterBinding.ensureInitialized();
     final bottomPadding = MediaQuery.of(context).padding.bottom;
-    const navBarHeight = 32.0; // Further reduced from 40 to 32
-    const fabRadius = 28.0; // Standard FAB radius
+    const navBarHeight = 60.0; // Standard height for bottom nav bar
+    const fabRadius = 28.0;
+
+    // Ensure minimum padding for devices without safe areas
+    final effectiveBottomPadding = bottomPadding < 8 ? 8.0 : bottomPadding;
 
     return Container(
-      height: navBarHeight +
-          bottomPadding, // Dynamic height: content + safe area only
+      height: navBarHeight + effectiveBottomPadding,
       child: Stack(
         children: [
-          // Background painter - extends to full height including safe area
+          // Background with notch
           Positioned(
             bottom: 0,
             left: 0,
@@ -42,11 +44,10 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               builder: (controller) {
                 return CustomPaint(
                   size: Size(MediaQuery.of(context).size.width,
-                      navBarHeight + bottomPadding),
+                      navBarHeight + effectiveBottomPadding),
                   painter: BottomNavBarPainter(
-                    backgroundColor: Theme.of(context)
-                        .scaffoldBackgroundColor, // Use scaffold background
-                    bottomPadding: bottomPadding,
+                    backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+                    bottomPadding: effectiveBottomPadding,
                     navBarHeight: navBarHeight,
                   ),
                 );
@@ -55,47 +56,46 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
           ),
           // Navigation icons
           Positioned(
-            bottom: bottomPadding + 2, // Reduced padding from 6px to 2px
+            bottom: effectiveBottomPadding + 8,
             left: 0,
             right: 0,
             child: SizedBox(
-              height: 28, // Keep icon area height
+              height: 44,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   for (int i = 0; i < widget.items.length; i++)
-                    if (i == widget.items.length / 2)
-                      SizedBox(width: fabRadius * 2) // Space for FAB
+                    if (i == widget.items.length ~/ 2)
+                      SizedBox(width: fabRadius * 2 + 16) // More space for FAB
                     else
                       SizedBox(
-                        width: 48, // Constrain width
-                        height: 28, // Constrain height
+                        width: 50,
+                        height: 44,
                         child: InkWell(
                           onTap: () => widget.onTap(i),
-                          borderRadius: BorderRadius.circular(14),
+                          borderRadius: BorderRadius.circular(22),
                           child: Center(
                             child: widget.items[i].icon is Icon
                                 ? Icon(
                                     (widget.items[i].icon as Icon).icon,
-                                    size: 22,
+                                    size: 26,
                                     color: widget.currentIndex == i
                                         ? Colors.blue
-                                        : Colors.grey,
+                                        : Colors.grey[600],
                                   )
                                 : widget.items[i].icon is ImageIcon
                                     ? ImageIcon(
                                         (widget.items[i].icon as ImageIcon)
                                             .image,
-                                        size: 22,
+                                        size: 26,
                                         color: widget.currentIndex == i
                                             ? Colors.blue
-                                            : Colors.grey,
+                                            : Colors.grey[600],
                                       )
                                     : SizedBox(
-                                        width: 22,
-                                        height: 22,
-                                        child: widget.items[i]
-                                            .icon, // Use the widget directly (handles SizedBox, Image, etc.)
+                                        width: 26,
+                                        height: 26,
+                                        child: widget.items[i].icon,
                                       ),
                           ),
                         ),
@@ -104,23 +104,58 @@ class _CustomBottomNavigationBarState extends State<CustomBottomNavigationBar> {
               ),
             ),
           ),
-          // Floating Action Button
+          // Floating Action Button positioned properly in the notch
           Positioned(
-            top: 0, // FAB extends above the nav bar
+            top: 4, // Small offset from the very top
             left: MediaQuery.of(context).size.width / 2 - fabRadius,
-            child: FloatingActionButton(
-              onPressed: () => widget.onTap(widget.items.length ~/ 2),
-              backgroundColor: Colors.blue,
-              child: widget.items[widget.items.length ~/ 2].icon is Icon
-                  ? widget.items[widget.items.length ~/ 2].icon
-                  : widget.items[widget.items.length ~/ 2].icon is ImageIcon
-                      ? ImageIcon(
-                          (widget.items[widget.items.length ~/ 2].icon
-                                  as ImageIcon)
-                              .image,
-                          color: Colors.white,
-                        )
-                      : widget.items[widget.items.length ~/ 2].icon,
+            child: Container(
+              width: fabRadius * 2,
+              height: fabRadius * 2,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: Colors.blue,
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black.withOpacity(0.15),
+                    blurRadius: 6,
+                    offset: Offset(0, 3),
+                  ),
+                ],
+              ),
+              child: Material(
+                color: Colors.transparent,
+                child: InkWell(
+                  onTap: () => widget.onTap(widget.items.length ~/ 2),
+                  borderRadius: BorderRadius.circular(fabRadius),
+                  child: Center(
+                    child: widget.items[widget.items.length ~/ 2].icon is Icon
+                        ? Icon(
+                            (widget.items[widget.items.length ~/ 2].icon
+                                    as Icon)
+                                .icon,
+                            color: Colors.white,
+                            size: 28,
+                          )
+                        : widget.items[widget.items.length ~/ 2].icon
+                                is ImageIcon
+                            ? ImageIcon(
+                                (widget.items[widget.items.length ~/ 2].icon
+                                        as ImageIcon)
+                                    .image,
+                                color: Colors.white,
+                                size: 28,
+                              )
+                            : Container(
+                                width: 28,
+                                height: 28,
+                                child: ClipOval(
+                                  child: widget
+                                      .items[widget.items.length ~/ 2].icon,
+                                ),
+                              ),
+                  ),
+                ),
+              ),
             ),
           ),
         ],
@@ -137,7 +172,7 @@ class BottomNavBarPainter extends CustomPainter {
   BottomNavBarPainter({
     required this.backgroundColor,
     this.bottomPadding = 0,
-    this.navBarHeight = 56.0,
+    this.navBarHeight = 60.0,
   });
 
   @override
@@ -148,26 +183,29 @@ class BottomNavBarPainter extends CustomPainter {
 
     Path path = Path();
 
+    // Calculate dimensions for a clean notch
+    final centerX = size.width * 0.5;
+    final notchRadius = 32.0; // Slightly larger than FAB radius for clearance
+    final notchMargin = 8.0; // Space around the notch
+
     // Start from top-left
     path.moveTo(0, 0);
 
-    // Create the curved notch for the FAB
-    final notchWidth = size.width * 0.25; // Width of the notch
-    final notchHeight = 15.0; // Reduced notch depth (was 20.0)
-    final centerX = size.width * 0.5;
+    // Left side to notch
+    path.lineTo(centerX - notchRadius - notchMargin, 0);
 
-    // Left side to notch start
-    path.lineTo(centerX - notchWidth / 2, 0);
+    // Create smooth semicircular notch
+    path.arcToPoint(
+      Offset(centerX + notchRadius + notchMargin, 0),
+      radius: Radius.circular(notchRadius + notchMargin),
+      clockwise: false,
+    );
 
-    // Curved notch for FAB
-    path.quadraticBezierTo(centerX, -notchHeight, centerX + notchWidth / 2, 0);
-
-    // Right side from notch end
+    // Right side from notch
     path.lineTo(size.width, 0);
 
-    // Right edge down to bottom of entire area (including safe area)
-    path.lineTo(
-        size.width, size.height); // This ensures color fills to very bottom
+    // Right edge down to bottom
+    path.lineTo(size.width, size.height);
 
     // Bottom edge across full width
     path.lineTo(0, size.height);
